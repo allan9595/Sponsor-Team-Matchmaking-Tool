@@ -5,14 +5,14 @@ module.exports = function validateProjectInput(data) {
   let errors = {};
 
 
-  data.email = !isEmpty(data.text) ? data.text : '';
+  data.email = !isEmpty(data.email) ? data.email : '';
   data.projectName= !isEmpty(data.projectName) ? data.projectName : '';
   data.phone = !isEmpty(data.phone) ? data.phone : '';
   data.Address = !isEmpty(data.Address) ? data.Address : '';
   data.Duration = !isEmpty(data.Duration) ? data.Duration : '';
   data.Budget = !isEmpty(data.Budget) ? data.Budget : '';
   data.Description = !isEmpty(data.Description) ? data.Description : '';
-  data.email = !isEmpty(data.text) ? data.text : '';
+  data.Size = !isEmpty(data.Size) ? data.Size : '';
 
   if(Validator.isEmpty(data.email)){
     errors.email = 'email field is required';
@@ -26,6 +26,10 @@ module.exports = function validateProjectInput(data) {
     errors.projectName = 'Project Name must be bewteen 2 and 30 characters';
   }
 
+  if(Validator.isEmpty(data.phone)){
+    errors.phone = 'Phone field is requried';
+  }
+
   if(!isEmpty(data.phone)){
     const regExp = /^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{4})$/
     if(!data.phone.match(regExp)){
@@ -34,7 +38,14 @@ module.exports = function validateProjectInput(data) {
   }
 
   if(Validator.isEmpty(data.Address)){
-    errors.email = 'Address field is required';
+    errors.Address = 'Address field is required';
+  }
+
+  if(Validator.isEmpty(data.Duration)){
+    errors.Duration = 'Duartion field is requried';
+  }
+  if(Validator.isEmpty(data.Size)){
+    errors.Size = 'Size field is requried';
   }
 
   if(Validator.isEmpty(data.Budget)){
