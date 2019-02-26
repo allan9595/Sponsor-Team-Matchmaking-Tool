@@ -6,7 +6,9 @@ const sposorGuard = require('../../middlewares/sponsorGuard');
 
 
 const Project = require('../../models/Project');
+const User = require('../../models/User');
 
+//Validation
 const validateProjectInput = require('../../validation/project');
 
 //@route GET api/project/test
@@ -21,7 +23,7 @@ router.get('/test', (req, res) => res.json({msg: "posts works"}));
 //@desc Create Project
 //@access Private
 
-router.post('/',passport.authenticate('jwt', {session:false}), sposorGuard, (req, res) => {
+router.post('/create',passport.authenticate('jwt', {session:false}), sposorGuard, (req, res) => {
     const {errors, isValid} = validateProjectInput(req.body);
   //validation
 
@@ -38,10 +40,24 @@ router.post('/',passport.authenticate('jwt', {session:false}), sposorGuard, (req
     Duration: req.body.Duration,
     Budget: req.body.Budget,
     Size: req.body.Size,
-    Description: req.body.Description
+    Description: req.body.Description,
+    user: req.user.id
   });
 
   newProject.save().then(post => res.json(post));
 });
 
+
+//@route GET api/project
+//@desc Sponsor can view all its current Proejcts
+//@access Private
+
+router.get('/', passport.authenticate('jwt', {session: false}), sposorGuard, (req, res) => {
+    Project.findOne({user: req.user.id})
+        .then(project => {
+            if(project.user.toString() === req.user.id){
+                res.json(project);
+            }
+        })
+});
 module.exports = router;
