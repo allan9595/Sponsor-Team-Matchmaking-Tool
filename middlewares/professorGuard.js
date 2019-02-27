@@ -11,12 +11,12 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();;
 opts.secretOrKey = keys.secretOrKey;
 
 
-const sponsorGuard = (req, res, next) => {
-    if(req.user && (req.user.role !== "sponsor")){
-        next(res.status(403).json({err:" you are not a sponsor"}));
+const professorGuard = (req, res, next) => {
+    if(req.user && (req.user.role !== "professor")){
+        next(res.status(403).json({err:" you are not a professor"}));
     } else {
         next();
     }
 }
 
-module.exports = sponsorGuard ;
+module.exports = professorGuard ;
