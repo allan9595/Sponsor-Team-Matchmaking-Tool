@@ -20,25 +20,29 @@ const ProjectSchema = new Schema({
     type: String,
     required: true
   },
-  Address: {
+  address: {
     type: String,
     required: true
   },
-  Duration: {
+  duration: {
     type: String,
     required: true
   },
-  Budget: {
+  budget: {
     type: String,
     required:true
   },
-  Size: {
+  size: {
     type: String,
     required: true
   },
-  Description: {
+  description: {
     type: String,
     required: true,
+  },
+  status: {
+    type: String,
+    default: 'available'
   },
   likes: [
     {

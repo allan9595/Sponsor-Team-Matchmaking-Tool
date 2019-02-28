@@ -8,11 +8,11 @@ module.exports = function validateProjectInput(data) {
   data.email = !isEmpty(data.email) ? data.email : '';
   data.projectName= !isEmpty(data.projectName) ? data.projectName : '';
   data.phone = !isEmpty(data.phone) ? data.phone : '';
-  data.Address = !isEmpty(data.Address) ? data.Address : '';
-  data.Duration = !isEmpty(data.Duration) ? data.Duration : '';
-  data.Budget = !isEmpty(data.Budget) ? data.Budget : '';
-  data.Description = !isEmpty(data.Description) ? data.Description : '';
-  data.Size = !isEmpty(data.Size) ? data.Size : '';
+  data.address = !isEmpty(data.address) ? data.address : '';
+  data.duration = !isEmpty(data.duration) ? data.duration : '';
+  data.budget = !isEmpty(data.budget) ? data.budget : '';
+  data.description = !isEmpty(data.description) ? data.description : '';
+  data.size = !isEmpty(data.size) ? data.size : '';
 
   if(Validator.isEmpty(data.email)){
     errors.email = 'email field is required';
@@ -22,7 +22,7 @@ module.exports = function validateProjectInput(data) {
     errors.email = 'Email is invalid';
   }
 
-  if(!Validator.isLength(data.projectName, { min:2 , max : 30})){
+  if(!Validator.isLength(data.projectName, { min:2 })){
     errors.projectName = 'Project Name must be bewteen 2 and 30 characters';
   }
 
@@ -37,23 +37,23 @@ module.exports = function validateProjectInput(data) {
     }
   }
 
-  if(Validator.isEmpty(data.Address)){
-    errors.Address = 'Address field is required';
+  if(Validator.isEmpty(data.address)){
+    errors.address = 'Address field is required';
   }
 
-  if(Validator.isEmpty(data.Duration)){
-    errors.Duration = 'Duartion field is requried';
+  if(Validator.isEmpty(data.duration)){
+    errors.duration = 'Duartion field is requried';
   }
-  if(Validator.isEmpty(data.Size)){
-    errors.Size = 'Size field is requried';
-  }
-
-  if(Validator.isEmpty(data.Budget)){
-    errors.Budget = 'Budget field is required, if no budget, type in none';
+  if(Validator.isEmpty(data.size)){
+    errors.size = 'Size field is requried';
   }
 
-  if(Validator.isEmpty(data.Description)){
-    errors.Description = 'Description field is required';
+  if(Validator.isEmpty(data.budget)){
+    errors.budget = 'Budget field is required, if no budget, type in none';
+  }
+
+  if(Validator.isEmpty(data.description)){
+    errors.description = 'Description field is required';
   }
 
   return {
