@@ -13,6 +13,7 @@ module.exports = function validateProjectInput(data) {
   data.budget = !isEmpty(data.budget) ? data.budget : '';
   data.description = !isEmpty(data.description) ? data.description : '';
   data.size = !isEmpty(data.size) ? data.size : '';
+  data.technologies = !isEmpty(data.technologies) ? data.technologies : '';
 
   if(Validator.isEmpty(data.email)){
     errors.email = 'email field is required';
@@ -21,6 +22,19 @@ module.exports = function validateProjectInput(data) {
   if(!Validator.isEmail(data.email)){
     errors.email = 'Email is invalid';
   }
+
+  if(Validator.isEmpty(data.technologies)){
+    errors.technologies = 'technologies filed is required';
+  }
+
+
+  if(!isEmpty(data.technologies)){
+    const regExp = /,?[a-zA-Z][a-zA-Z0-9]*,?/
+    if(!data.technologies.match(regExp)){
+      errors.technologies = 'Invalid input, please follow ex: React, Node, Express'
+    }
+  }
+  
 
   if(!Validator.isLength(data.projectName, { min:2 })){
     errors.projectName = 'Project Name must be bewteen 2 and 30 characters';

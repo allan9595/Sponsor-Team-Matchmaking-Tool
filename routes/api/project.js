@@ -44,21 +44,6 @@ router.get('/sponsor/:id', passport.authenticate('jwt', {session:false}), sponso
       .catch(err => res.status(400).json({noprojectfound: 'No project find'}))
   });
 
-//@route POST api/project/sponsor/create/upload
-/*
-router.post(
-  '/sponsor/create/upload', 
-  passport.authenticate('jwt', {session:false}), 
-  sponsorGuard,
-  upload.single('file'),
-  (req, res) => {
-    res.json({file: req.file})
-});
-
-*/
-
-
-
 
 //@route POST api/project/sponsor/create
 //@desc Create Project
@@ -73,7 +58,8 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
     return res.status(400).json(errors);
   }
 
-    //get the project fields first if the project already exists
+  
+    
     
     const projectFields = new Project({
         email: req.body.email,
@@ -86,14 +72,25 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
         description: req.body.description,
         user: req.user.id,
         status: req.body.status,
-        file: req.file.filename
+        technologies : req.body.technologies.split(',')
+        
     });
+    if(!req.file) {
+      projectFields.file = null;
+      projectFields
+      .save()
+      .then(project => res.json(project))
+      .catch(err => res.status(400).json({'project':'failed'}));
+    } else {
+      projectFields.file = req.file.filename;
+      projectFields
+      .save()
+      .then(project => res.json(project))
+      .catch(err => res.status(400).json({'project':'failed'}));
+    }
     
-  
-    projectFields
-        .save()
-        .then(project => res.json(project))
-        .catch(err => res.status(400).json({'project':'failed'}));
+
+   
     
     
   
@@ -103,7 +100,7 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
 //@desc Edit Project
 //@access Private
 
-router.post('/sponsor/update/:id',passport.authenticate('jwt', {session:false}), sponsorGuard, (req, res) => {
+router.post('/sponsor/update/:id',passport.authenticate('jwt', {session:false}), sponsorGuard,upload.single('file'), (req, res) => {
     const {errors, isValid} = validateProjectInput(req.body);
   //validation
 
@@ -114,6 +111,10 @@ router.post('/sponsor/update/:id',passport.authenticate('jwt', {session:false}),
 
     //get the project fields first if the project already exists
     
+   
+    
+
+
     const projectFields = {
         email: req.body.email,
         projectName: req.body.projectName,
@@ -124,9 +125,23 @@ router.post('/sponsor/update/:id',passport.authenticate('jwt', {session:false}),
         size: req.body.size,
         description: req.body.description,
         user: req.user.id,
-        status: req.body.status
+        status: req.body.status,
+        technologies : req.body.technologies.split(',')
 
     };
+
+    //if in the updating process, no file choosed, then do nothing to the file
+    //if there is a file updating, then update the file
+
+    if(!req.file) {
+      
+     
+    } else {
+      projectFields.file = req.file.filename;
+      
+    }
+
+
     projectFields.user = req.user.id;
     if(req.body.email) projectFields.email = req.body.email;
     if(req.body.projectName) projectFields.projectName = req.body.projectName;
@@ -137,7 +152,8 @@ router.post('/sponsor/update/:id',passport.authenticate('jwt', {session:false}),
     if(req.body.size) projectFields.size = req.body.size;
     if(req.body.description) projectFields.description= req.body.description;
     if(req.body.status) projectFields.status = req.body.status;
-
+    if(req.body.technologies) projectFields.technologies = req.body.technologies.split(',');
+    
   
   Project.findById(req.params.id)
     .then(project => {
@@ -198,8 +214,18 @@ router.get('/professor/:id', passport.authenticate('jwt', {session:false}), prof
   });
 
 
+/*
+//@route GET api/project/professor/:id
+//@desc GET api/project/professor/:id
+//@access private
+
+router.post(
+  '/professor/team-add', 
+  passport.authenticate('jwt', {session: false}),
+  professorGuard,
+  (req, res) => {});
 
 
-
+*/
 
 module.exports = router;

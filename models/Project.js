@@ -10,7 +10,8 @@ const ProjectSchema = new Schema({
   },
   file: {
     type: String,
-    ref: "uploads.files"
+    ref: "uploads.files",
+    
   },
   email:{
     type: String,
@@ -38,6 +39,10 @@ const ProjectSchema = new Schema({
   },
   size: {
     type: String,
+    required: true
+  },
+  technologies: {
+    type: [String],
     required: true
   },
   description: {

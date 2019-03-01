@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 
 const users = require('./routes/api/users');
 const project = require('./routes/api/project');
+const team = require('./routes/api/team');
 
 const app = express();
 
@@ -38,6 +39,7 @@ require('./config/passport')(passport);
 //use routes
 app.use('/api/users',users);
 app.use('/api/project',project);
+app.use('/api/team',team);
 
 const port = process.env.PORT || 5000;
 
