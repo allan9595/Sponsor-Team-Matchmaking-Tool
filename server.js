@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const methodOverride = require('method-override');
 
 const users = require('./routes/api/users');
 const project = require('./routes/api/project');
@@ -12,6 +13,9 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+//something to do with file upload, might change later
+app.use(methodOverride('_method'));
 
 //DB config
 

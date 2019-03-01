@@ -8,6 +8,10 @@ const ProjectSchema = new Schema({
     type : Schema.Types.ObjectId,
     ref: "users"
   },
+  file: {
+    type: String,
+    ref: "uploads.files"
+  },
   email:{
     type: String,
     required: true

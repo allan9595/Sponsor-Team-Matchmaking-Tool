@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const sponsorGuard = require('../../middlewares/sponsorGuard');
 const professorGuard = require('../../middlewares/professorGuard');
+const upload = require('../../middlewares/fileUpload');
+
 
 const Project = require('../../models/Project');
 const User = require('../../models/User');
@@ -42,11 +44,27 @@ router.get('/sponsor/:id', passport.authenticate('jwt', {session:false}), sponso
       .catch(err => res.status(400).json({noprojectfound: 'No project find'}))
   });
 
+//@route POST api/project/sponsor/create/upload
+/*
+router.post(
+  '/sponsor/create/upload', 
+  passport.authenticate('jwt', {session:false}), 
+  sponsorGuard,
+  upload.single('file'),
+  (req, res) => {
+    res.json({file: req.file})
+});
+
+*/
+
+
+
+
 //@route POST api/project/sponsor/create
 //@desc Create Project
 //@access Private
 
-router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), sponsorGuard, (req, res) => {
+router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), sponsorGuard, upload.single('file') ,(req, res) => {
     const {errors, isValid} = validateProjectInput(req.body);
   //validation
 
@@ -67,8 +85,8 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
         size: req.body.size,
         description: req.body.description,
         user: req.user.id,
-        status: req.body.status
-
+        status: req.body.status,
+        file: req.file.filename
     });
     
   
@@ -76,7 +94,8 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
         .save()
         .then(project => res.json(project))
         .catch(err => res.status(400).json({'project':'failed'}));
-        
+    
+    
   
 });
 
