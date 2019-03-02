@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import {BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import './App.css';
+import './Home.css';
+import SignUpForm from './pages/SignUpForm'; //sign up form page component
+import SignInForm from './pages/SignInForm'; //sign in form page component
+import Home from './pages/Home'; // homepage
 
 class App extends Component {
   render() {
@@ -8,11 +12,12 @@ class App extends Component {
 
       // wrap everything int router here
       <Router>
+
       <div className="App">
-        
+      
         {/* Title Box -> just rando box for logo(?) */}
         <div className="Title_Box">
-          <h1> Welcome to MatchMe</h1>
+          <h1>Welcome to MatchMe</h1>
         </div>
 
         {/* Box for Form -> The right side of the screen with form */}
@@ -20,60 +25,63 @@ class App extends Component {
         
           {/* switch for Sign In/Up -- inside form div */}
           <div className="PageToggle">
-            <a href="#" className="PageToggle_Item ">Sign In</a>
-            <a href="#" className="PageToggle_Item PageToggle_Item--Active"> Sign Up</a>
+            <NavLink to ="/sign-in" activeClassName = "PageToggle_Item--Active" className="PageToggle_Item ">Sign In</NavLink>
+            <NavLink exact to ="/" activeClassName = "PageToggle_Item--Active" className="PageToggle_Item"> Sign Up</NavLink>
           </div>
 
           {/* Title of form -- inside form div */}
           <div className="FormTitle">
-            <Link to="/sign-in" className="FormTitle__Link">Sign In</Link> or <a href="#" className="FormTitle__Link FormTitle__Link--Active">Sign Up</a>
+            <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/" 
+            activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
           </div>
 
           {/* Form contents -- inside form div */}
-          {/* {Routed} */}
-          <Route exact path="/">
-          <div className="FormCenter">
-            <form className="FormFields" onSubmit={this.handleSubmit}>
+          {/* {Routed} -- component is imported */}
+          <Route exact path="/"  component={SignUpForm}></Route>
 
-              {/* Name */}
-              <div className="Formfield">
-              <label className="FormField__Label" htmlFor="name">Full Name</label>
-              <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name"/>
-              </div>
-              <br></br>
+          {/* Route to sign in */}
+          <Route path="/sign-in" component={SignInForm}></Route>
 
-              {/* email */}
-              <div className="Formfield">
-              <label className="FormField__Label" htmlFor="email">E-Mail</label>
-              <input type="text" id="email" className="FormField__Input" placeholder="Enter your e-mail address" name="email"/>
-              </div>
-              <br></br>
-
-              {/* password */}
-              <div className="Formfield">
-              <label className="FormField__Label" htmlFor="Password">Password</label>
-              <input type="password" id="password" className="FormField__Input" placeholder="Enter a password" name="password"/>
-              </div>
-              <br></br>
-              <br></br>
-
-              {/* submit button */}
-              <div className = "FormField">
-                <button className="FormField__Button mr-20">Sign Up</button> <a href="#"
-                className="FormField__Link">I'm already a member</a>
-              </div>
-
-            </form>
-          </div>
-          </Route>
-
-          <Route path="/sign-in">
-            <h1>Sign In</h1>
-          </Route>
         </div>
 
+        {/* <div className="Home">
+          <div className ="HomeHeader">
+            
+          <header>
+          <h2>VIEWS</h2>
+          </header>
+
+          <section>
+            <nav>
+              <ul>
+                <li><a href="#">Project 1</a></li>
+                <li><a href="#">Project 2</a></li>
+                <li><a href="#">Project 3</a></li>
+              </ul>
+            </nav>
+  
+ 
+
+          <footer>
+            <p>Footer</p>
+          </footer>
+          </section>
+
+          </div>
+        </div> */}
+
       </div>
-      </Router>
+
+      
+      {/* The home page div with route */}
+      {/* <Route exact path="/main" component={Home}>
+      
+        <div className="HomePage">
+          <Route path="/main" component={Home}></Route>
+        </div>
+      </Route> */}
+
+      </Router> 
     );
   }
 }
