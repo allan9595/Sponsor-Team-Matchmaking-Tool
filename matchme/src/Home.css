@@ -1,0 +1,12 @@
+.App {
+    height: 100vh;
+    display: flex;
+    color: white;
+  }
+  
+  .Title_Form {
+    width: 100%;
+    background-color: #2E4158;
+    padding: 25px 40px;
+    overflow: auto;
+  }
