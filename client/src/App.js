@@ -1,16 +1,44 @@
 import React, { Component } from 'react';
 import store from './store';
 import { Provider } from 'react-redux';
+import { setCurrentUser, logoutUser } from './actions/authActions';
+import PrivateRoute from './components/common/PrivateRoute';
 import jwt_decode from 'jwt-decode';
 import setAuthToken  from './utils/setAuthToken';
 import DashboardSponsor from './components/dashboard/DashboardSponsor';
-import ProfessorSponsor from './components/dashboard/ProfessorSponsor';
+import DashboardProfessor from './components/dashboard/DashboardProfessor';
 import {BrowserRouter as Router, Route, NavLink, Link, Switch } from 'react-router-dom';
 import './App.css';
 
 import SignUpForm from './components/auth/SignUpForm'; //sign up form page component
 import SignInForm from './components/auth/SignInForm'; //sign in form page component
 
+
+
+//check for token
+if(localStorage.jwtToken){
+  //set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+
+  //Decode token and get user info and exp
+  const decoded = jwt_decode(localStorage.jwtToken);
+
+  //set user and isAuthenticated
+
+  store.dispatch(setCurrentUser(decoded));
+ 
+  //check for expired token
+  const currentTime = Date.now() / 1000;
+  if(decoded.exp < currentTime){
+    //logout user
+    store.dispatch(logoutUser());
+      //todo clear current user profile
+      //redirect to login
+      window.location.href= "/login";
+
+  }
+
+}
 
 class App extends Component {
   render() {
@@ -41,8 +69,15 @@ class App extends Component {
               <Route exact path="/signup"  component={SignUpForm}></Route>
               {/* Route to sign in */}
               <Route path="/login" component={SignInForm}></Route>
+              <div className="container body">
               <Switch>
+                  <PrivateRoute exec path = "/sponsor"  component={ DashboardSponsor } />
               </Switch>
+              <Switch>
+                  <PrivateRoute exec path = "/professor"  component={ DashboardProfessor } />
+              </Switch>
+                
+              </div>
             </div> 
           </div>
         </Router> 

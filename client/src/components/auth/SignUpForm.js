@@ -76,7 +76,7 @@ render() {
   return (
     <div className="FormCenter">
 
-      <form novalidate
+      <form noValidate
         className="FormFields" 
         onSubmit={this.handleSubmit}
       >
@@ -208,4 +208,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(SignUpForm);
+export default connect(mapStateToProps, { registerUser })(withRouter(SignUpForm));

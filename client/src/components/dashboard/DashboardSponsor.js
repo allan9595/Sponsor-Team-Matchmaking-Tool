@@ -6,7 +6,7 @@ import React, { Component } from 'react'
     let dashboardContent;
     dashboardContent = (
         <div>
-            <p className="lead text-muted">Welcome</p>
+            <p className="lead text-muted">Welcome Sponsor</p>
            
             
           </div>
