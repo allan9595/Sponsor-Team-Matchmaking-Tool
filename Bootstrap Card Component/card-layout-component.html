@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet"> 
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<title>Card Layout Component</title>
+</head>
+<body>
+
+<!-- 
+Istanbul is strategically located on the Bosphorus peninsula between the Balkans and Anatolia, the Black Sea and the Mediterranean. Throughout the span of years it has witnessed major political, religious and artistic events thus surrounded by historical sights such as mosques, churches, palaces and even more of which only traces remain. 
+--> 
+
+<!--
+A day in Istanbul	
+Area of Balat
+Boat in Sea
+Fish Market	
+--> 
+
+<!--
+Card Set Color #1: #669999;
+Card Set Color #2: #cc6666;
+Card Set Color #3: #cc9966;
+-->
+
+
+	
+<div class="container mt-5">
+    <h2 class="mb-5 text-center">Match Me</h2>
+    <div class="card-deck">
+    <div class="card cardSet1">
+        <div class="card-body">
+            <img src="images/cards/pic1.jpg" class="img-fluid" alt="Project 1"/>
+            <h3 class="card-title mt-2">Project Name</h3>
+            <p class="card-text mt-3">Description</p>
+            <h5 class="card-user">User</h5>
+            <p>Status</p>
+            <p>Technologies</p>
+            <button class="btn-sm float-right" id="myBtn1">Get Info</button>
+        </div>
+        <!-- The Modal -->
+        <div id="project1Modal" class="modal">
+            
+                <!-- Modal Content -->
+                <div class="modal-content">
+                    <span class="close">&times</span>
+                    <h3 class="card-title mt-2">Project1</h3>
+                    <p class="card-text mt-3">Description</p>
+                    <p>email</p>
+                    <p>Phone</p>
+                    <p>Address</p>
+                    <p>Duration</p>
+                    <p>Budget</p>
+                    <p>Size</p>
+                </div>
+            </div>
+    </div>
+
+    <div class="card cardSet2">
+        <div class="card-body">
+            <img src="images/cards/pic2.jpg" class="img-fluid" alt="Project 2"/>
+            <h3 class="card-title mt-2">Project Name</h3>
+            <p class="card-text mt-3">Description</p>
+            <h5 class="card-user">User</h5>
+            <p>Status</p>
+            <p>Technologies</p>
+            <button class="btn-sm float-right" id="myBtn2">Get Info</button>
+        </div>
+        <!-- The Modal -->
+        <div id="project2Modal" class="modal">
+            
+                <!-- Modal Content -->
+                <div class="modal-content">
+                    <span class="close">&times</span>
+                    <h3 class="card-title mt-2">Project2</h3>
+                    <p class="card-text mt-3">Description</p>
+                    <p>email</p>
+                    <p>Phone</p>
+                    <p>Address</p>
+                    <p>Duration</p>
+                    <p>Budget</p>
+                    <p>Size</p>
+                </div>
+            </div>
+    </div>
+
+    <div class="card cardSet3">
+        <div class="card-body">
+            <img src="images/cards/pic3.jpg" class="img-fluid" alt="Project 3"/>
+            <h3 class="card-title mt-2">Project Name</h3>
+            <p class="card-text mt-3">Description</p>
+            <h5 class="card-user">User</h5>
+            <p>Status</p>
+            <p>Technologies</p>
+            <button class="btn-sm float-right" id="myBtn3">Get Info</button>
+        </div>
+        <!-- The Modal -->
+        <div id="project3Modal" class="modal">
+            
+                <!-- Modal Content -->
+                <div class="modal-content">
+                    <span class="close">&times</span>
+                    <h3 class="card-title mt-2">Project3</h3>
+                    <p class="card-text mt-3">Description</p>
+                    <p>email</p>
+                    <p>Phone</p>
+                    <p>Address</p>
+                    <p>Duration</p>
+                    <p>Budget</p>
+                    <p>Size</p>
+                </div>
+            </div>
+    </div>
+
+    </div>
+
+</div>
+	
+	
+
+<!-- jQuery --> 
+<script src="js/jquery-3.2.1.slim.min.js"></script> 
+<script src="js/tether.min.js"></script> 
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Modal functions -->
+<script>
+    var modal1 = document.getElementById('project1Modal');
+    var modal2 = document.getElementById('project2Modal');
+    var modal3 = document.getElementById('project3Modal');
+
+    //different buttons
+    var btn1 = document.getElementById('myBtn1');
+    var btn2 = document.getElementById('myBtn2');
+    var btn3 = document.getElementById('myBtn3');
+
+    var span = document.getElementsByClassName("close")[0];
+
+    // on click -> open corresponding Modal
+    btn1.onclick = function(){
+        modal1.style.display = "block";
+    }
+
+    btn2.onclick = function(){
+        modal2.style.display = "block";
+    }
+
+    btn3.onclick = function(){
+        modal3.style.display = "block";
+    }
+
+    // click x -> close modal
+    span.onclick = function(){
+        modal1.style.display = "none";
+        modal2.style.display = "none";
+        modal3.style.display = "none";
+    }
+
+    // click outside modal closes it
+    window.onclick = function(event){
+        if(event.target == modal1 || event.target == modal2 || event.target == modal3){
+            modal1.style.display = "none";
+            modal2.style.display = "none";
+            modal3.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
