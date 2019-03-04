@@ -31,30 +31,33 @@ class Navbar extends Component {
 
     const sponsorauthLink = (
       <ul className="navbar-nav ml-auto">
+        <li className="nav-item text-light lead">Welcome {user.name}!</li>
         <li className="nav-item">
           <Link className="nav-link" to="/sponsor/account">
               Account
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/sponsor/project/upload">
+          <Link className="nav-link" to="/upload">
               Project Upload
           </Link>
         </li>
         <li className="nav-item">
-          <a
-            href=""
+          <Link
+            
+            to = "/login"
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           > 
             Logout
-          </a>
+          </Link>
         </li>
       </ul>
     );
 
     const professorauthLink = (
       <ul className="navbar-nav ml-auto">
+        <li className="nav-item text-light lead">Welcome {user.name}!</li>
         <li className="nav-item">
           <Link className="nav-link" to="/professor/account">
               Account
@@ -71,13 +74,13 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <a
-            href=""
+          <Link
+            to = "/login"
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           > 
             Logout
-          </a>
+          </Link>
         </li>
       </ul>
     );

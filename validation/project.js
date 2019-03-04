@@ -37,7 +37,7 @@ module.exports = function validateProjectInput(data) {
   
 
   if(!Validator.isLength(data.projectName, { min:2 })){
-    errors.projectName = 'Project Name must be bewteen 2 and 30 characters';
+    errors.projectName = 'Project Name must be min 2 characters';
   }
 
   if(Validator.isEmpty(data.phone)){
