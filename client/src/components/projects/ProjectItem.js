@@ -3,29 +3,40 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-
+import { deleteProject } from '../../actions/projectActions';
 
 class ProjectItem extends Component {
-  
+    onDeleteClick(id) {
+        this.props.deleteProject(id);
+      }
 
-  render() {
-    const { project } = this.props;
+    render() {
+        const { project } = this.props;
 
-    return (
-      <div className="card card-body mb-3">
-        <div className="row">
-          <div className="col-md-2">
-            <br />
-            <p className="text-center">{project.projectName}</p>
-          </div>
-          <div className="col-md-10">
-            <p className="lead">{project.email}</p>
-            
-          </div>
-        </div>
-      </div>
-    );
-  }
+        return (
+            <div className="col-md-12">
+                <div className="card text-dark bg-info">
+                    <div className="card-body">
+                        <h3 className="card-title">{project.projectName}</h3>
+                        <p className="card-subtitle">{project.status}</p>
+                        <p className="card-text">{project.description}</p>
+                        
+                        <button type="button" className="btn btn-dark btn-block">
+                            Edit
+                        </button>
+                        <button 
+                            type="button" 
+                            className="btn btn-danger btn-block"
+                            onClick={this.onDeleteClick.bind(this, project._id)}
+                        >
+                            <i className="far fa-trash-alt" />
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 
@@ -39,6 +50,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, {deleteProject})(
     ProjectItem
 );

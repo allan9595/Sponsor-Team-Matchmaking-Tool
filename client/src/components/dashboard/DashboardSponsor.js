@@ -25,7 +25,13 @@ class DashboardSponsor extends Component {
     dashboardContent = (
         <div>
           <p className="lead text-muted">Welcome {user.name}</p>
-          {projectContent}
+          <div className="container">
+            <div className="card-columns">
+              {projectContent}
+            </div>
+          </div>
+
+         
 
         </div>
       )
@@ -33,13 +39,12 @@ class DashboardSponsor extends Component {
     return (
         <div className="dashboard">
             <div className = "container">
-            <div className="row">
-                <div className="col-md-12">
-                    <h1 className="display-4">Dashboard</h1>
-                    {dashboardContent}
-
-                </div>
-            </div>
+              <div className="row">
+                  <div className="col-md-12">
+                      <h1 className="display-4">Dashboard</h1>
+                      {dashboardContent}
+                  </div>
+              </div>
             </div>
         </div>
     )

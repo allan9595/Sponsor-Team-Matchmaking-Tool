@@ -179,15 +179,15 @@ router.post('/sponsor/update/:id',passport.authenticate('jwt', {session:false}),
 //@access Private
 
 router.delete('/sponsor/:id', passport.authenticate('jwt',{session:false}), sponsorGuard, (req, res) => {
-    Project.findOne({user: req.user.id})
-        .then(project => {
-            //check for project owner
-            if(project.user.toString() !== req.user.id){
-                return res.status(401).json({notauthorized: 'User not authorized'});
-            }
+  
+         
+        Project.findById(req.params.id)
+          .then(project => {
 
-            //Delete
-            project.remove().then( () => res.json({success: true}));
+           //Delete
+          project.remove().then(() => res.json({success: true}));
+              
+           
         })
         .catch(err => res.status(404).json({projectnotfound: 'no project found'}));
 });

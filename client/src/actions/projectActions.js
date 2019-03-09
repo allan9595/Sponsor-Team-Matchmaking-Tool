@@ -3,7 +3,8 @@ import axios from 'axios';
 import {
   GET_ERRORS,
   GET_PROJECTS,
-  ADD_PROJECTS
+  ADD_PROJECTS,
+  DELETE_PROJECT
 } from './types';
 
 
@@ -42,6 +43,25 @@ export const getProjects = () => dispatch => {
       dispatch({
         type: GET_PROJECTS,
         payload: null
+      })
+    );
+};
+
+
+// Delete Project from sponsor
+export const deleteProject= id => dispatch => {
+  axios
+    .delete(`/api/project/sponsor/${id}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_PROJECT,
+        payload: id
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };
