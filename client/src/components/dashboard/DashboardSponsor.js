@@ -2,19 +2,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProjects  } from '../../actions/projectActions';
-import Projects from '../projects/Projects';
+import ProjectFeed from '../projects/ProjectFeed';
 class DashboardSponsor extends Component {
 
   componentDidMount() {
     this.props.getProjects();
   }
+
+
   render() {
     const {user} = this.props.auth;
-    let dashboardContent;
+    const { projects } = this.props.project;
+    let dashboardContent , projectContent;
+
+    if( projects == null ) {
+      projectContent = <p>Create an project</p>
+    } else {
+      projectContent = <ProjectFeed projects = {projects}/>
+    }
+
+
     dashboardContent = (
         <div>
           <p className="lead text-muted">Welcome {user.name}</p>
-          
+          {projectContent}
 
         </div>
       )
@@ -26,6 +37,7 @@ class DashboardSponsor extends Component {
                 <div className="col-md-12">
                     <h1 className="display-4">Dashboard</h1>
                     {dashboardContent}
+
                 </div>
             </div>
             </div>
