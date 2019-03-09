@@ -72,7 +72,7 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
         description: req.body.description,
         user: req.user.id,
         status: req.body.status,
-        technologies : req.body.technologies.split(',')
+        technologies : req.body.technologies.split(','),
         
     });
     if(!req.file) {
@@ -81,12 +81,12 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
       .save()
       .then(project => res.json(project))
       .catch(err => res.status(400).json({'project':'failed'}));
-    } else {
+    } else { 
       projectFields.file = req.file.filename;
       projectFields
-      .save()
-      .then(project => res.json(project))
-      .catch(err => res.status(400).json({'project':'failed'}));
+        .save()
+        .then(project => res.json(project))
+        .catch(err => res.status(400).json({'project':'failed'}));
     }
     
 

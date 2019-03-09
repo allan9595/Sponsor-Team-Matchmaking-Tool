@@ -22,11 +22,13 @@ class CreateProject extends Component {
         description:'',
         status:'',
         technologies:'',
+        file: '',
         errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,7 +39,7 @@ class CreateProject extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+   
     const projectData = {
       email: this.state.email,
       projectName: this.state.projectName,
@@ -49,8 +51,9 @@ class CreateProject extends Component {
       description: this.state.description,
       status: this.state.status,
       technologies: this.state.technologies,
+      file: this.state.file
     };
-
+    console.log(projectData);
     this.props.createProject(projectData, this.props.history);
   }
 
@@ -58,6 +61,7 @@ class CreateProject extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+ 
   render() {
     const { errors} = this.state;
 
@@ -87,7 +91,11 @@ class CreateProject extends Component {
                 create a project and sponsor it
               </p>
               <small className="d-block pb-3">* = required fields</small>
-              <form onSubmit={this.onSubmit}>
+              <form 
+                onSubmit={this.onSubmit} 
+                encType="multipart/form-data"
+                method="POST"
+              >
                 <TextFieldGroup
                   placeholder="* your company email"
                   name="email"
@@ -164,8 +172,12 @@ class CreateProject extends Component {
                   error={errors.description}
                   info="Short Description About This Project"
                 />
-
-                
+                  
+                  <div className="input-default-wrapper mt-3">
+                    <input type="file" name = "file" id="file" onChange={this.onChange}   className="input-default-js" />
+                    <label className="label-for-default-js rounded-right mb-3" htmlFor="file">
+                    </label>
+                 </div >
                 <input
                   type="submit"
                   value="Submit"
@@ -181,12 +193,12 @@ class CreateProject extends Component {
 }
 
 CreateProject.propTypes = {
-  project: PropTypes.object.isRequired,
+  
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  project: state.project,
+ 
   errors: state.errors
 });
 

@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { getProjects  } from '../../actions/projectActions';
+import Projects from '../projects/Projects';
 class DashboardSponsor extends Component {
+
+  componentDidMount() {
+    this.props.getProjects();
+  }
   render() {
     const {user} = this.props.auth;
     let dashboardContent;
     dashboardContent = (
         <div>
           <p className="lead text-muted">Welcome {user.name}</p>
+          
+
         </div>
       )
 
@@ -28,13 +35,13 @@ class DashboardSponsor extends Component {
 }
 
 DashboardSponsor.propTypes = {
-    
     auth: PropTypes.object.isRequired,
     
   };
 
 const mapStateToProps = state => ({
-    auth:state.auth
+    auth:state.auth,
+    project: state.project
   });
 
-export default connect(mapStateToProps)(DashboardSponsor);
+export default connect(mapStateToProps, { getProjects})(DashboardSponsor);
