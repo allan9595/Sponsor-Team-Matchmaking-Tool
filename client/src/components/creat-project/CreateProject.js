@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProject } from '../../actions/projectActions';
 
@@ -20,9 +19,9 @@ class CreateProject extends Component {
         budget: '',
         size:'',
         description:'',
-        status:'',
         technologies:'',
         file: '',
+        status:'available',
         errors: {}
     };
 
@@ -49,8 +48,8 @@ class CreateProject extends Component {
       budget: this.state.budget,
       size: this.state.size,
       description: this.state.description,
-      status: this.state.status,
       technologies: this.state.technologies,
+      status: this.state.status,
       file: this.state.file
     };
     console.log(projectData);

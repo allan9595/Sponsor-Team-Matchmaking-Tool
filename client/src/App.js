@@ -13,7 +13,7 @@ import DashboardSponsor from './components/dashboard/DashboardSponsor';
 import DashboardProfessor from './components/dashboard/DashboardProfessor';
 import PrivateRoute from './components/common/PrivateRoute';
 import CreateProject from './components/creat-project/CreateProject';
-
+import EditProject from './components/edit-project/EditProject';
 import './App.css';
 
 // Check for token
@@ -56,6 +56,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path = "/upload" component={ CreateProject } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path = "/edit-project/:id" component={ EditProject } />
               </Switch>
             </div>
           </div>

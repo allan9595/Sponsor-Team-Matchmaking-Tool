@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
-import { Link } from 'react-router-dom';
 import { deleteProject } from '../../actions/projectActions';
+import { Link } from 'react-router-dom';
 
 class ProjectItem extends Component {
     onDeleteClick(id) {
         this.props.deleteProject(id);
       }
 
+    
     render() {
         const { project } = this.props;
 
@@ -21,9 +21,13 @@ class ProjectItem extends Component {
                         <p className="card-subtitle">{project.status}</p>
                         <p className="card-text">{project.description}</p>
                         
-                        <button type="button" className="btn btn-dark btn-block">
-                            Edit
-                        </button>
+                        
+                        <Link 
+                            className="btn btn-dark btn-block"
+                            to={`/edit-project/${project._id}`}
+                        >
+                        Edit
+                        </Link>
                         <button 
                             type="button" 
                             className="btn btn-danger btn-block"

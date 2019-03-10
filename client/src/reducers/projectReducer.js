@@ -1,7 +1,8 @@
 import {
   GET_PROJECTS,
   ADD_PROJECTS,
-  DELETE_PROJECT
+  DELETE_PROJECT,
+  GET_PROJECT
 } from '../actions/types';
 
 
@@ -16,6 +17,11 @@ export default (state = initialState, action) => {
         return {
           ...state,
           projects: action.payload
+        };
+      case GET_PROJECT: 
+        return {
+          ...state,
+          project: action.payload
         };
       case ADD_PROJECTS: 
         return {

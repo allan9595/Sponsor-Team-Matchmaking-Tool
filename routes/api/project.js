@@ -38,7 +38,7 @@ router.get('/sponsor', passport.authenticate('jwt', {session: false}), sponsorGu
 //@desc GET post/:id
 //@access private
 
-router.get('/sponsor/:id', passport.authenticate('jwt', {session:false}), sponsorGuard,(req, res) => {
+router.get('/sponsor/edit-project/:id', passport.authenticate('jwt', {session:false}), sponsorGuard,(req, res) => {
     Project.findById(req.params.id)
       .then(project => res.json(project))
       .catch(err => res.status(400).json({noprojectfound: 'No project find'}))
@@ -100,7 +100,7 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
 //@desc Edit Project
 //@access Private
 
-router.post('/sponsor/update/:id',passport.authenticate('jwt', {session:false}), sponsorGuard,upload.single('file'), (req, res) => {
+router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:false}), sponsorGuard,upload.single('file'), (req, res) => {
     const {errors, isValid} = validateProjectInput(req.body);
   //validation
 
