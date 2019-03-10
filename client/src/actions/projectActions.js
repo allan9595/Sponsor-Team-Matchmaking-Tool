@@ -49,7 +49,7 @@ export const updateProject = (projectData, history, id) => dispatch => {
     );
 };
 
-//GET all the projects 
+//GET all the projects for sponsor
 export const getProjects = () => dispatch => {
   
   axios
@@ -102,6 +102,27 @@ export const getCurrentProject = (id) => dispatch => {
       dispatch({
         type: GET_PROJECT,
         payload: {}
+      })
+    );
+};
+
+
+
+//GET all the projects from professor view
+export const getProjectsProfessor = () => dispatch => {
+  
+  axios
+    .get('/api/project/professor')
+    .then(res =>
+      dispatch({
+        type: GET_PROJECTS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROJECTS,
+        payload: null
       })
     );
 };

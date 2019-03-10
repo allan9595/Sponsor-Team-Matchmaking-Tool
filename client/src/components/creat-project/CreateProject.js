@@ -197,7 +197,6 @@ CreateProject.propTypes = {
 };
 
 const mapStateToProps = state => ({
- 
   errors: state.errors
 });
 
