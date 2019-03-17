@@ -126,3 +126,22 @@ export const getProjectsProfessor = () => dispatch => {
       })
     );
 };
+
+
+//GET single project from professor view
+export const getProjectProfessor = (id) => dispatch => {
+  axios
+    .get(`/api/project/professor/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROJECT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROJECT,
+        payload: null
+      })
+    );
+};

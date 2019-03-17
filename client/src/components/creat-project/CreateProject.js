@@ -95,6 +95,7 @@ class CreateProject extends Component {
                 encType="multipart/form-data"
                 method="POST"
               >
+                
                 <TextFieldGroup
                   placeholder="* your company email"
                   name="email"

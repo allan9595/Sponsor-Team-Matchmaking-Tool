@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
@@ -14,6 +14,7 @@ import DashboardProfessor from './components/dashboard/DashboardProfessor';
 import PrivateRoute from './components/common/PrivateRoute';
 import CreateProject from './components/creat-project/CreateProject';
 import EditProject from './components/edit-project/EditProject';
+import ProjectDetail from './components/projects/ProjectDetail';
 import './App.css';
 
 // Check for token
@@ -41,7 +42,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
+        <BrowserRouter>
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
@@ -60,9 +61,12 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path = "/edit-project/:id" component={ EditProject } />
               </Switch>
+              <Switch>
+                <PrivateRoute exact path = "/professor/:id" component={ ProjectDetail } />
+              </Switch>
             </div>
           </div>
-        </Router>
+        </BrowserRouter>
       </Provider>
     );
   }

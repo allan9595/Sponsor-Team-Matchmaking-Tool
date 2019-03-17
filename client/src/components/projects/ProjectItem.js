@@ -45,8 +45,6 @@ class ProjectItem extends Component {
 
 
 ProjectItem.propTypes = {
-  
-
   auth: PropTypes.object.isRequired
 };
 
