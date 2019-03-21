@@ -56,7 +56,7 @@ router.post('/signup', (req, res) => {
           role: req.body.role
         });
 
-        bcrypt.genSalt(15, (err, salt) => {
+        bcrypt.genSalt(11, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if(err) throw err;
             newUser.password = hash;

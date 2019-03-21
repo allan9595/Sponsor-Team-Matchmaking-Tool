@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProjectsProfessor  } from '../../actions/projectActions';
 import ProjectFeedProfessor from '../projects/ProjectFeedProfessor';
-
-
+import ProjectFiliter from '../projects/ProjectFiliter';
+import selectProjects from '../../selectors/projectSelector';
 
   class DashboardProfessor extends Component {
     componentDidMount() {
@@ -36,7 +36,9 @@ import ProjectFeedProfessor from '../projects/ProjectFeedProfessor';
       )
 
     return (
+        
         <div className="dashboard">
+            <ProjectFiliter />
             <div className = "container">
             <div className="row">
                 <div className="col-md-12">
@@ -54,10 +56,13 @@ DashboardProfessor.propTypes = {
     auth: PropTypes.object.isRequired,  
 };
 
-const mapStateToProps = state => ({
-    auth:state.auth,
-    project: state.project
-  });
+const mapStateToProps = state => {
+    return{
+      auth:state.auth,
+      project: state.project
+      //project: selectProjects(state.project.projects, state.filters)
+    }  
+  };
 
 export default connect(mapStateToProps, {
   getProjectsProfessor
