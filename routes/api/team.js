@@ -9,7 +9,7 @@ const professorGuard = require('../../middlewares/professorGuard');
 const Project = require('../../models/Project');
 const User = require('../../models/User');
 
-const Team = require('../../models/team');
+const Team = require('../../models/Team');
 
 //@route GET api/team/test
 //@desc tests team routes
