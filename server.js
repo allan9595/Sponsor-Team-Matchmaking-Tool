@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const methodOverride = require('method-override');
-
+const path = require('path');
 const users = require('./routes/api/users');
 const project = require('./routes/api/project');
 const team = require('./routes/api/team');
