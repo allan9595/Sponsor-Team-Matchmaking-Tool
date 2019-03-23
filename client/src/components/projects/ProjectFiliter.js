@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import { setTextFilter } from '../../actions/filiterAction';
+import { setTextFilter } from '../../actions/filterAction';
 class ProjectFiliter extends Component {
 
   onTextChange = (e) => {
