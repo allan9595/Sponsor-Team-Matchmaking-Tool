@@ -16,8 +16,11 @@ import { GET_ERRORS, SET_CURRENT_USER } from '../actions/types';
 //call register with NO data
 test('call register with NO data', () => {
     const action = registerUser();
-    expect(action).toEqual({
+    expect(action).toBe({
         type: GET_ERRORS,
         payload: 'err.response.data'
     });
+
+    //called properly?
+    expect(action).toHaveBeenCalledTimes(1);
 });
