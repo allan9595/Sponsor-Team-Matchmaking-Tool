@@ -2,11 +2,13 @@
 
 **Sponsor-Team-Matchmaking-Tool** is a tool allow sponsors and university professors connect better!
 
+Project URL: https://matchmeunt.herokuapp.com
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/allan9595/allaninstagram/blob/master/walkthrough3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/allan9595/Sponsor-Team-Matchmaking-Tool/blob/master/walkthrough2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
