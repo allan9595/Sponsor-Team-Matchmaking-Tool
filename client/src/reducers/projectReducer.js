@@ -2,7 +2,8 @@ import {
   GET_PROJECTS,
   ADD_PROJECTS,
   DELETE_PROJECT,
-  GET_PROJECT
+  GET_PROJECT,
+  SET_TEXT_FILTER
 } from '../actions/types';
 
 

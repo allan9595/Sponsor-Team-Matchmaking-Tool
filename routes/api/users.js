@@ -201,7 +201,6 @@ router.post('/reset/:token', async (req, res) => {
         if(err) throw err;
         user.password = hash;
         user.save()
-          .then(user => res.json(user))
           .catch(err => console.log(err));
       })
     })
