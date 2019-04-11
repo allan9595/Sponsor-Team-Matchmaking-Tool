@@ -9,6 +9,8 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Forgot from './components/auth/Forgot';
+import Reset from './components/auth/Reset';
 import DashboardSponsor from './components/dashboard/DashboardSponsor';
 import DashboardProfessor from './components/dashboard/DashboardProfessor';
 import PrivateRoute from './components/common/PrivateRoute';
@@ -49,6 +51,8 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/forgot" component={Forgot} />
+              <Route exact path="/reset/:token" component={Reset} />
               <Switch>
                 <PrivateRoute exact path = "/sponsor" component={ DashboardSponsor } />
               </Switch>

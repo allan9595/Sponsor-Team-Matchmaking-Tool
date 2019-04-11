@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 class Login extends Component {
@@ -92,7 +92,11 @@ class Login extends Component {
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
+              <Link className="text-center"to="/forgot">
+                Forgot your password? Click here to retrieve it! 
+              </Link>    
             </div>
+          
           </div>
         </div>
       </div>

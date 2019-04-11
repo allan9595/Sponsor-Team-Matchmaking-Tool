@@ -3,8 +3,11 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-
+const path = require('path');
 const router = express.Router(); //ask for using router
+const async = require('async');
+const _ = require('lodash');
+const crypto = require('crypto');
 
 const keys = require('../../config/keys');
 //Load User model
@@ -14,6 +17,11 @@ const User = require('../../models/User');
 
 const validateSignupInput = require('../../validation/signup');
 const validateLoginInput = require('../../validation/login');
+const validateResetInput = require('../../validation/reset');
+
+const {sendEmail} = require('../../services/Mailer');
+
+
 //@route GET api/users/test
 //desc: tests users routes
 //@access public
@@ -148,5 +156,63 @@ router.get(
 );
 
 
+router.post('/forgot',  async (req, res) => {
 
+  token = await crypto.randomBytes(20).toString('hex');  
+  
+  try{
+    
+    User.findOne({email: req.body.email}, (err, user) => {
+      
+      if(!user) {
+        return res.redirect(`${keys.redirectDomain}/login`);
+      }
+
+      user.reset_password_token = token;
+      user.reset_password_expires = Date.now() + 3600000; // 1 hour
+      user.save();
+      sendEmail(user.email, token);
+      res.status(201).json({user, token});
+    })
+  } catch (e) {
+   res.status(400).send(e);
+  }
+});
+
+
+router.post('/reset/:token', async (req, res) => {
+
+  const { errors, isValid } = validateResetInput(req.body);
+
+  //check on validation
+
+  if(!isValid){
+    return res.status(400).json(errors);
+  }
+
+  try{
+  User.findOne({reset_password_token: req.params.token, reset_password_expires: {$gt: Date.now()}}, (err, user) => {
+    if(!user) {
+      res.send('No user found or token expired');
+    }
+    //user.password = req.body.password;
+    bcrypt.genSalt(11, (err, salt) => {
+      bcrypt.hash(req.body.password, salt, (err, hash) => {
+        if(err) throw err;
+        user.password = hash;
+        user.save()
+          .then(user => res.json(user))
+          .catch(err => console.log(err));
+      })
+    })
+    user.reset_password_token = undefined;
+    user.reset_password_expires = undefined;
+    user.save();
+    res.status(201).json({user});
+  })
+} catch (e) {
+  res.status(400).send(e);
+}
+  
+});
 module.exports = router;

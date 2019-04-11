@@ -62,3 +62,21 @@ export const logoutUser = () => dispatch => {
     
   
 };
+
+export const submitEmail = (values) => async dispatch =>{
+  axios.post('/api/users/forgot', values)
+  
+};
+
+// Reset User
+export const resetPassword = (userData, history, token) => dispatch => {
+  axios
+    .post(`/api/users/reset/${token}`, userData)
+    .then(res => history.push('/login'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
