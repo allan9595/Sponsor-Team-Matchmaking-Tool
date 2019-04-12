@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getProjectsProfessor  } from '../../actions/projectActions';
 import ProjectFeedProfessor from '../projects/ProjectFeedProfessor';
 import ProjectFiliter from '../projects/ProjectFiliter';
-import selectProjects from '../../selectors/projectSelector';
 
   class DashboardProfessor extends Component {
     componentDidMount() {

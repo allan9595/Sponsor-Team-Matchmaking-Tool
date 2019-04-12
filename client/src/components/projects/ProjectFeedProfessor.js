@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import selectProjects from '../../selectors/projectSelector';
 import ProjectItemProfessor from './ProjectItemProfessor';
