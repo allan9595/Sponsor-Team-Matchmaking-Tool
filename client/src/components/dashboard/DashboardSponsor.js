@@ -16,7 +16,7 @@ class DashboardSponsor extends Component {
     let dashboardContent , projectContent;
 
     if( projects == null ) {
-      projectContent = <p>Create an project</p>
+      projectContent = <p>Create a project</p>
     } else {
       projectContent = <ProjectFeed projects = {projects}/>
     }
