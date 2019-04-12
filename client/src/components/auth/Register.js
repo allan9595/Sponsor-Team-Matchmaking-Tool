@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import SelectListGroup from '../common/SelectListGroup';
 import TextFieldGroup from '../common/TextFieldGroup';
+import '../componentCSS/forms.css';
+
 class Register extends Component {
   constructor() {
     super();
@@ -63,6 +65,8 @@ class Register extends Component {
 
 
     return (
+      <div class="pageForm">
+      <div class="jumbotron">
       <div className="register">
         <div className="container">
           <div className="row">
@@ -127,6 +131,8 @@ class Register extends Component {
             </div>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     );
   }
