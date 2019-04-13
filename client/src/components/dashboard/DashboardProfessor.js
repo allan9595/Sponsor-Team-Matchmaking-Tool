@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getProjectsProfessor  } from '../../actions/projectActions';
 import ProjectFeedProfessor from '../projects/ProjectFeedProfessor';
 import ProjectFiliter from '../projects/ProjectFiliter';
+import "../dashboardCSS/dashboard.css";
 
   class DashboardProfessor extends Component {
     componentDidMount() {
@@ -24,8 +25,7 @@ import ProjectFiliter from '../projects/ProjectFiliter';
 
     dashboardContent = (
         <div>
-          <p className="lead text-muted">Welcome {user.name}</p>
-          <p className="lead text-muted">Role {user.role}</p>
+          <p className="lead text-muted">Welcome {user.name}. <br></br> Role: {user.role}</p>
           <div className="container">
             <div className="card-columns">
               {projectContent}
@@ -41,7 +41,9 @@ import ProjectFiliter from '../projects/ProjectFiliter';
             <div className = "container">
             <div className="row">
                 <div className="col-md-12">
+                <div className="dashboardH1">
                     <h1 className="display-4">Dashboard</h1>
+                </div>
                     {dashboardContent}
                 </div>
             </div>

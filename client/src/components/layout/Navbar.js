@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
+import '../layoutCSS/navbar.css';
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -31,7 +32,6 @@ class Navbar extends Component {
 
     const sponsorauthLink = (
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item text-light lead">Welcome {user.name}!</li>
         <li className="nav-item">
           <Link className="nav-link" to="/sponsor/account">
               Account
@@ -57,7 +57,6 @@ class Navbar extends Component {
 
     const professorauthLink = (
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item text-light lead">Welcome {user.name}!</li>
         <li className="nav-item">
           <Link className="nav-link" to="/professor/account">
               Account
@@ -85,7 +84,8 @@ class Navbar extends Component {
       </ul>
     );
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <div class="navBar">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-#183563 mb-4">
         <div className="container">
           {
             (isAuthenticated && user.role === 'sponsor') ? 
@@ -128,6 +128,7 @@ class Navbar extends Component {
           </div>
         </div>
       </nav>
+      </div>
     );
   }
 }

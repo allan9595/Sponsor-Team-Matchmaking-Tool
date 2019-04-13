@@ -11,10 +11,11 @@ class Landing extends Component {
     }
   }
 
+  // "dark-overlay" <<-- insert this into a class name to make completely black 
   render() {
     return (
       <div className="landing">
-        <div className="dark-overlay landing-inner text-light">
+        <div className="landing-inner text-light">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">

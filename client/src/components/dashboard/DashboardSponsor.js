@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProjects  } from '../../actions/projectActions';
 import ProjectFeed from '../projects/ProjectFeed';
+import "../dashboardCSS/dashboard.css";
+
 class DashboardSponsor extends Component {
 
   componentDidMount() {
@@ -24,8 +26,7 @@ class DashboardSponsor extends Component {
 
     dashboardContent = (
         <div>
-          <p className="lead text-muted">Welcome {user.name}</p>
-          <p className="lead text-muted">Role {user.role}</p>
+          <p className="lead text-muted">Welcome {user.name}. <br></br> Role {user.role}</p>
           <div className="container">
             <div className="card-columns">
               {projectContent}
@@ -39,7 +40,9 @@ class DashboardSponsor extends Component {
             <div className = "container">
               <div className="row">
                   <div className="col-md-12">
-                      <h1 className="display-4">Dashboard</h1>
+                  <div className="dashboardH1">
+                      <h1 className="display-4 ">Dashboard</h1>
+                  </div>
                       {dashboardContent}
                   </div>
               </div>

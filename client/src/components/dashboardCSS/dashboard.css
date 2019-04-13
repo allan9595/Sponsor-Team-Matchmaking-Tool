@@ -1,0 +1,13 @@
+.dashboardH1{
+    color: white;
+}
+
+.searchbar {
+    color: green;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+   }
