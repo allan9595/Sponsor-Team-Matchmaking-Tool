@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import '../componentCSS/forms.css';
 class Login extends Component {
   constructor() {
     super();
@@ -67,6 +68,8 @@ class Login extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+            <div class="pageForm">
+            <div class="jumbotron">
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">
                 Sign in to MatchMe Account
@@ -94,7 +97,9 @@ class Login extends Component {
               </form>
               <Link className="text-center"to="/forgot">
                 Forgot your password? Click here to retrieve it! 
-              </Link>    
+              </Link>
+              </div>
+              </div>    
             </div>
           
           </div>

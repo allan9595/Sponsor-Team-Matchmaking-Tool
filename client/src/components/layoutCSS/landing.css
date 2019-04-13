@@ -1,0 +1,16 @@
+body{
+    background-image: url('blackcube.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.frontpageText{
+    margin-top:80px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+   }

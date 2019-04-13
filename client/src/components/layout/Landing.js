@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import '../layoutCSS/landing.css'
 
 class Landing extends Component {
   componentDidMount() {
@@ -10,17 +11,19 @@ class Landing extends Component {
     }
   }
 
+  // "dark-overlay" <<-- insert this into a class name to make completely black 
   render() {
     return (
       <div className="landing">
-        <div className="dark-overlay landing-inner text-light">
+        <div className="landing-inner text-light">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
+              <div class="frontpageText">
                 <h1 className="display-3 mb-4">Match Me</h1>
                 <p className="lead">
                   {' '}
-                  An app connect universities and external project sponsors
+                  An app that connects universities and external project sponsors
                 </p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
@@ -29,6 +32,7 @@ class Landing extends Component {
                 <Link to="/login" className="btn btn-lg btn-light">
                   Login
                 </Link>
+                </div>
               </div>
             </div>
           </div>

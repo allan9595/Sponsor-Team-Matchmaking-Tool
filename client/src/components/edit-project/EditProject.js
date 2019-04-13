@@ -7,6 +7,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProject, getCurrentProject, updateProject } from '../../actions/projectActions';
 import isEmpty from '../../validation/is-empty';
+
 class CreateProject extends Component {
   constructor(props) {
     super(props);
@@ -147,9 +148,11 @@ class CreateProject extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Project</h1>
+            <div class="pageForm">
+            <div class="jumbotron">
+              <h1 className="display-4 text-center">Edit Project</h1>
               <p className="lead text-center">
-                create a project and sponsor it
+               Edit your previously created project
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form 
@@ -253,6 +256,8 @@ class CreateProject extends Component {
                   className="btn btn-info btn-block mt-4"
                 />
               </form>
+            </div>
+            </div>
             </div>
           </div>
         </div>
