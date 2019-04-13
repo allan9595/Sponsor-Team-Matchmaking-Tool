@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import {
   GET_ERRORS,
   GET_PROJECTS,
@@ -13,7 +12,7 @@ import {
 // Create Project
 export const createProject = (projectData, history) => dispatch => {
     axios
-      .post('/api/project/sponsor/create', projectData)
+      .post('/api/project/sponsor/create', projectData, { headers: { 'Content-Type': 'multipart/form-data' }})
       .then(res => {
         dispatch({
           type: ADD_PROJECTS,
@@ -33,7 +32,7 @@ export const createProject = (projectData, history) => dispatch => {
   // Update Project
 export const updateProject = (projectData, history, id) => dispatch => {
   axios
-    .post(`/api/project/sponsor/edit-project/${id}`, projectData)
+    .post(`/api/project/sponsor/edit-project/${id}`, projectData, { headers: { 'Content-Type': 'multipart/form-data' }})
     .then(res => {
       dispatch({
         type: EDIT_PROJECT,
@@ -138,6 +137,33 @@ export const getProjectProfessor = (id) => dispatch => {
         payload: res.data
       })
     )
+    .catch(err =>
+      dispatch({
+        type: GET_PROJECT,
+        payload: null
+      })
+    );
+};
+
+
+export const fileDownload = (id) => dispatch => {
+  axios
+    .get(`/api/project/professor/${id}/file`, 
+      {
+        responseType: 'arraybuffer',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/pdf'
+        }
+    })
+    .then((res) => {
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', id + '.pdf'); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+  })
     .catch(err =>
       dispatch({
         type: GET_PROJECT,

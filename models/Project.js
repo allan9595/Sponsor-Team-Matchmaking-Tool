@@ -9,9 +9,7 @@ const ProjectSchema = new Schema({
     ref: "users"
   },
   file: {
-    type: String,
-    ref: "uploads.files",
-    
+    type: Buffer
   },
   email:{
     type: String,

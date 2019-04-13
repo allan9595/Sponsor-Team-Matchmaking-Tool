@@ -4,12 +4,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const sponsorGuard = require('../../middlewares/sponsorGuard');
 const professorGuard = require('../../middlewares/professorGuard');
-const upload = require('../../middlewares/fileUpload');
-
-
+//const upload = require('../../middlewares/fileUpload');
+const multer = require('multer');
 const Project = require('../../models/Project');
 const User = require('../../models/User');
-
+var FileDownload = require('js-file-download');
 //Validation
 const validateProjectInput = require('../../validation/project');
 
@@ -45,11 +44,25 @@ router.get('/sponsor/edit-project/:id', passport.authenticate('jwt', {session:fa
   });
 
 
+  const upload = multer({
+    limits: {
+        fileSize: 10000000
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(doc|docx|pdf)$/)) {
+            return cb(new Error('Please upload an doc or docx or pdf file'))
+        }
+
+        cb(undefined, true)
+    }
+})
+
+
 //@route POST api/project/sponsor/create
 //@desc Create Project
 //@access Private
 
-router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), sponsorGuard, upload.single('file') ,(req, res) => {
+router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), upload.single('file'),sponsorGuard, async (req, res) => {
     const {errors, isValid} = validateProjectInput(req.body);
   //validation
 
@@ -58,10 +71,10 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
     return res.status(400).json(errors);
   }
 
-  
     
-    
-    const projectFields = new Project({
+    req.body.file = req.file.buffer;
+    console.log(req.file);
+    const projectFields = await new Project({
         email: req.body.email,
         projectName: req.body.projectName,
         phone: req.body.phone,
@@ -73,34 +86,30 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), spo
         user: req.user.id,
         status: req.body.status,
         technologies : req.body.technologies.split(','),
-        
+        file: req.body.file
     });
-    if(!req.file) {
+    
+    /*if(!req.file) {
       projectFields.file = null;
       projectFields
       .save()
       .then(project => res.json(project))
       .catch(err => res.status(400).json({'project':'failed'}));
-    } else { 
-      projectFields.file = req.file.filename;
-      projectFields
+    } else { */
+     // projectFields.file = req.file.filename;
+      await projectFields
         .save()
         .then(project => res.json(project))
         .catch(err => res.status(400).json({'project':'failed'}));
-    }
-    
-
+   // }
    
-    
-    
-  
 });
 
 //@route POST api/project/sponsor/update/:id
 //@desc Edit Project
 //@access Private
 
-router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:false}), sponsorGuard,upload.single('file'), (req, res) => {
+router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:false}),upload.single('file'), sponsorGuard,  async (req, res) => {
     const {errors, isValid} = validateProjectInput(req.body);
   //validation
 
@@ -114,6 +123,8 @@ router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:fa
    
     
 
+    req.body.file = req.file.buffer;
+    console.log(req.file);
 
     const projectFields = {
         email: req.body.email,
@@ -126,21 +137,13 @@ router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:fa
         description: req.body.description,
         user: req.user.id,
         status: req.body.status,
-        technologies : req.body.technologies.split(',')
+        technologies : req.body.technologies.split(','),
+        file: req.body.file
 
     };
 
     //if in the updating process, no file choosed, then do nothing to the file
     //if there is a file updating, then update the file
-
-    if(!req.file) {
-      
-     
-    } else {
-      projectFields.file = req.file.filename;
-      
-    }
-
 
     projectFields.user = req.user.id;
     if(req.body.email) projectFields.email = req.body.email;
@@ -155,7 +158,7 @@ router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:fa
     if(req.body.technologies) projectFields.technologies = req.body.technologies.split(',');
     
   
-  Project.findById(req.params.id)
+  await Project.findById(req.params.id)
     .then(project => {
         //if project exist, then update
         if(project){
@@ -169,8 +172,6 @@ router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:fa
         } 
     });
 });
-
-
 
 
 
@@ -207,11 +208,29 @@ router.get('/professor', passport.authenticate('jwt', {session: false}), profess
 //@desc GET api/project/professor/:id
 //@access private
 
-router.get('/professor/:id', passport.authenticate('jwt', {session:false}), professorGuard,(req, res) => {
-    Project.findById(req.params.id)
+router.get('/professor/:id', passport.authenticate('jwt', {session:false}), professorGuard, async (req, res) => {
+ 
+  await Project.findById(req.params.id)
       .then(project => res.json(project))
       .catch(err => res.status(400).json({noprojectfound: 'No project find'}))
-  });
+});
+
+
+router.get('/professor/:id/file', async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    res.set('Content-Type', 'application/pdf');
+    res.set('Content-Disposition', 'attachment; filename =' + req.params.id + '.pdf');
+    res.send(project.file);
+  } catch (e) {
+    res.status(404).send();
+  }
+})
+
+
+
+
+
 
 
 /*

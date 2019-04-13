@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getProjectProfessor} from '../../actions/projectActions';
+import { getProjectProfessor, fileDownload} from '../../actions/projectActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import isEmpty from '../../validation/is-empty';
@@ -20,6 +20,7 @@ class ProjectDetail extends Component {
             status:'available',
             errors: {}
         };
+        this.onSubmit = this.onSubmit.bind(this);
         
       }
     
@@ -50,7 +51,7 @@ class ProjectDetail extends Component {
           project.technologies = !isEmpty(project.technologies) ? project.technologies : '';
           project.file= !isEmpty(project.file) ? project.file : '';
         
-    
+            console.log(project.file);
          // Set component fields state
          this.setState({
           email: project.email,
@@ -68,9 +69,15 @@ class ProjectDetail extends Component {
       
       }}
     
-   
-    render() {
+      
+      onSubmit(e) {
+        e.preventDefault();
+        console.log(this.props.match.params.id);
+        this.props.fileDownload(this.props.match.params.id);
+      }
 
+    render() {
+       
 
         return ( 
                 <div className="container">
@@ -87,7 +94,11 @@ class ProjectDetail extends Component {
                                             <p className="card-text">{this.state.duration}</p>  
                                             <p className="card-text">{this.state.technologies}</p>  
                                             <p className="card-text">{this.state.budget}</p>  
-                                            <p className="card-text">{this.state.description}</p>                                       
+                                            <p className="card-text">{this.state.description}</p> 
+                                            
+                                            <button onClick={this.onSubmit}>
+                                            <i className="fas fa-cloud-download-alt"></i>
+                                            </button>
                                         </div>
                                 </div>        
                         </div>
@@ -108,7 +119,8 @@ class ProjectDetail extends Component {
         project: state.project
     });
     export default connect(mapStateToProps, {
-        getProjectProfessor 
+        getProjectProfessor,
+        fileDownload
     })(
         ProjectDetail
     );

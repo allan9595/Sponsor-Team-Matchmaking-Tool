@@ -26,6 +26,7 @@ class CreateProject extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onChangeFile = this.onChangeFile.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     
   }
@@ -38,7 +39,21 @@ class CreateProject extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-   
+    const data = new FormData();
+    const file = this.state.file;
+    data.append('file', file);
+    data.append('email', this.state.email);
+    data.append('phone',this.state.phone);
+    data.append('address',this.state.address);
+    data.append('duration',this.state.duration);
+    data.append('budget', this.state.budget);
+    data.append('size',this.state.size);
+    data.append('description',this.state.description);
+    data.append('technologies',this.state.technologies);
+    data.append('projectName',this.state.projectName);
+    data.append('status', this.state.status);
+    console.log(file);
+    /*
     const projectData = {
       email: this.state.email,
       projectName: this.state.projectName,
@@ -50,16 +65,19 @@ class CreateProject extends Component {
       description: this.state.description,
       technologies: this.state.technologies,
       status: this.state.status,
-      file: this.state.file
-    };
-    console.log(projectData);
-    this.props.createProject(projectData, this.props.history);
+      file: file
+    };*/
+    //console.log(projectData);
+    this.props.createProject(data, this.props.history);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onChangeFile(e) {
+    this.setState({ file: e.target.files[0] });
+  }
  
   render() {
     const { errors} = this.state;
@@ -174,7 +192,7 @@ class CreateProject extends Component {
                 />
                   
                   <div className="input-default-wrapper mt-3">
-                    <input type="file" name = "file" id="file" onChange={this.onChange}   className="input-default-js" />
+                    <input type="file" name ="file" id="file" onChange={this.onChangeFile}   className="input-default-js" />
                     <label className="label-for-default-js rounded-right mb-3" htmlFor="file">
                     </label>
                  </div >

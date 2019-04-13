@@ -27,6 +27,7 @@ class CreateProject extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeFile = this.onChangeFile.bind(this);
     
   }
 
@@ -53,7 +54,7 @@ class CreateProject extends Component {
       project.description = !isEmpty(project.description) ? project.description : '';
       project.status = !isEmpty(project.status) ? project.status : 'available';
       project.technologies = !isEmpty(project.technologies) ? project.technologies : '';
-      project.file= !isEmpty(project.file) ? project.file : '';
+      //project.file= !isEmpty(project.file) ? project.file : '';
     
 
      // Set component fields state
@@ -67,15 +68,29 @@ class CreateProject extends Component {
       size: project.size,
       description: project.description,
       status: project.status,
-      technologies: techCSV ,
-      file: project.file
+      technologies: techCSV 
+      //file: project.file
     });
   
   }}
 
   onSubmit(e) {
     e.preventDefault();
-   
+    const data = new FormData();
+    const file = this.state.file;
+    data.append('file', file);
+    data.append('email', this.state.email);
+    data.append('phone',this.state.phone);
+    data.append('address',this.state.address);
+    data.append('duration',this.state.duration);
+    data.append('budget', this.state.budget);
+    data.append('size',this.state.size);
+    data.append('description',this.state.description);
+    data.append('technologies',this.state.technologies);
+    data.append('projectName',this.state.projectName);
+    data.append('status', this.state.status);
+    console.log(file);
+    /*
     const projectData = {
       email: this.state.email,
       projectName: this.state.projectName,
@@ -88,16 +103,18 @@ class CreateProject extends Component {
       status: this.state.status,
       technologies: this.state.technologies,
       file: this.state.file
-    };
-    console.log(projectData);
-    this.props.updateProject(projectData, this.props.history, this.props.match.params.id);
+    };*/
+    //console.log(projectData);
+    this.props.updateProject(data, this.props.history, this.props.match.params.id);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
- 
+  onChangeFile(e) {
+    this.setState({ file: e.target.files[0] });
+  }
   render() {
     const { errors} = this.state;
     
@@ -226,7 +243,7 @@ class CreateProject extends Component {
                 />
                   
                   <div className="input-default-wrapper mt-3">
-                    <input type="file" name = "file" id="file" onChange={this.onChange}   className="input-default-js" />
+                    <input type="file" name = "file" id="file" onChange={this.onChangeFile}   className="input-default-js" />
                     <label className="label-for-default-js rounded-right mb-3" htmlFor="file">
                     </label>
                  </div >
