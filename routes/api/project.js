@@ -8,7 +8,7 @@ const professorGuard = require('../../middlewares/professorGuard');
 const multer = require('multer');
 const Project = require('../../models/Project');
 const User = require('../../models/User');
-var FileDownload = require('js-file-download');
+
 //Validation
 const validateProjectInput = require('../../validation/project');
 

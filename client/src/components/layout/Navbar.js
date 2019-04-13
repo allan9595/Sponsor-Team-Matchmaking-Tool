@@ -84,7 +84,7 @@ class Navbar extends Component {
       </ul>
     );
     return (
-      <div class="navBar">
+      <div className="navBar">
       <nav className="navbar navbar-expand-sm navbar-dark bg-#183563 mb-4">
         <div className="container">
           {
