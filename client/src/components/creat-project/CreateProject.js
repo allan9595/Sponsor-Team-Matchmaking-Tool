@@ -85,6 +85,8 @@ class CreateProject extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+            <div class="pageForm">
+            <div class="jumbotron">
               <h1 className="display-4 text-center">Create Project</h1>
               <p className="lead text-center">
                 create a project and sponsor it
@@ -184,6 +186,8 @@ class CreateProject extends Component {
                   className="btn btn-info btn-block mt-4"
                 />
               </form>
+            </div>
+            </div>
             </div>
           </div>
         </div>

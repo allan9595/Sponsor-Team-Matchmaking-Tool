@@ -26,7 +26,7 @@ class DashboardSponsor extends Component {
 
     dashboardContent = (
         <div>
-          <p className="lead text-muted">Welcome {user.name}. <br></br> Role {user.role}</p>
+          <p className="lead text-muted">Welcome {user.name}. <br></br> Role: {user.role}</p>
           <div className="container">
             <div className="card-columns">
               {projectContent}
