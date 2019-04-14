@@ -120,12 +120,7 @@ router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:fa
 
     //get the project fields first if the project already exists
     
-   
-    
-
     req.body.file = req.file.buffer;
-    console.log(req.file);
-
     const projectFields = {
         email: req.body.email,
         projectName: req.body.projectName,
@@ -158,7 +153,7 @@ router.post('/sponsor/edit-project/:id',passport.authenticate('jwt', {session:fa
     if(req.body.technologies) projectFields.technologies = req.body.technologies.split(',');
     
   
-  await Project.findById(req.params.id)
+   Project.findById(req.params.id)
     .then(project => {
         //if project exist, then update
         if(project){
@@ -208,17 +203,17 @@ router.get('/professor', passport.authenticate('jwt', {session: false}), profess
 //@desc GET api/project/professor/:id
 //@access private
 
-router.get('/professor/:id', passport.authenticate('jwt', {session:false}), professorGuard, async (req, res) => {
+router.get('/professor/:id', passport.authenticate('jwt', {session:false}), professorGuard,  (req, res) => {
  
-  await Project.findById(req.params.id)
+   Project.findById(req.params.id)
       .then(project => res.json(project))
       .catch(err => res.status(400).json({noprojectfound: 'No project find'}))
 });
 
 
-router.get('/professor/:id/file', async (req, res) => {
+router.get('/professor/:id/file',  (req, res) => {
   try {
-    const project = await Project.findById(req.params.id);
+    const project =  Project.findById(req.params.id);
     res.set('Content-Type', 'application/pdf');
     res.set('Content-Disposition', 'attachment; filename =' + req.params.id + '.pdf');
     res.send(project.file);
