@@ -73,7 +73,6 @@ router.post('/sponsor/create',passport.authenticate('jwt', {session:false}), upl
 
     
     req.body.file = req.file.buffer;
-    console.log(req.file);
     const projectFields = await new Project({
         email: req.body.email,
         projectName: req.body.projectName,
@@ -211,9 +210,9 @@ router.get('/professor/:id', passport.authenticate('jwt', {session:false}), prof
 });
 
 
-router.get('/professor/:id/file',  (req, res) => {
+router.get('/professor/:id/file', async (req, res) => {
   try {
-    const project =  Project.findById(req.params.id);
+    const project = await Project.findById(req.params.id);
     res.set('Content-Type', 'application/pdf');
     res.set('Content-Disposition', 'attachment; filename =' + req.params.id + '.pdf');
     res.send(project.file);
