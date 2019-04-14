@@ -49,9 +49,9 @@ class ProjectDetail extends Component {
           project.description = !isEmpty(project.description) ? project.description : '';
           project.status = !isEmpty(project.status) ? project.status : 'available';
           project.technologies = !isEmpty(project.technologies) ? project.technologies : '';
-          project.file= !isEmpty(project.file) ? project.file : '';
+          //project.file= !isEmpty(project.file) ? project.file : '';
         
-            console.log(project.file);
+        
          // Set component fields state
          this.setState({
           email: project.email,
@@ -63,8 +63,8 @@ class ProjectDetail extends Component {
           size: project.size,
           description: project.description,
           status: project.status,
-          technologies: techCSV ,
-          file: project.file
+          technologies: techCSV 
+          //file: project.file
         });
       
       }}
@@ -72,7 +72,6 @@ class ProjectDetail extends Component {
       
       onSubmit(e) {
         e.preventDefault();
-        console.log(this.props.match.params.id);
         this.props.fileDownload(this.props.match.params.id);
       }
 

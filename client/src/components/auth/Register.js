@@ -65,15 +65,15 @@ class Register extends Component {
 
 
     return (
-      <div class="pageForm">
-      <div class="jumbotron">
+      <div className="pageForm">
+      <div className="jumbotron">
       <div className="register">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">
-                Create your DevConnector account
+                Create your MatchMe account
               </p>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup

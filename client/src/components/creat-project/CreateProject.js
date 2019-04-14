@@ -52,22 +52,7 @@ class CreateProject extends Component {
     data.append('technologies',this.state.technologies);
     data.append('projectName',this.state.projectName);
     data.append('status', this.state.status);
-    console.log(file);
-    /*
-    const projectData = {
-      email: this.state.email,
-      projectName: this.state.projectName,
-      phone: this.state.phone,
-      address: this.state.address,
-      duration: this.state.duration,
-      budget: this.state.budget,
-      size: this.state.size,
-      description: this.state.description,
-      technologies: this.state.technologies,
-      status: this.state.status,
-      file: file
-    };*/
-    //console.log(projectData);
+    
     this.props.createProject(data, this.props.history);
   }
 
@@ -103,8 +88,8 @@ class CreateProject extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-            <div class="pageForm">
-            <div class="jumbotron">
+            <div className="pageForm">
+            <div className="jumbotron">
               <h1 className="display-4 text-center">Create Project</h1>
               <p className="lead text-center">
                 create a project and sponsor it
