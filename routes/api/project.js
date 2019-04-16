@@ -25,9 +25,10 @@ router.get('/test', (req, res) => res.json({msg: "posts works"}));
 
 router.get('/sponsor', passport.authenticate('jwt', {session: false}), sponsorGuard, (req, res) => {
     Project.find({user: req.user.id})
+        .select('-file')
         .then(project => {
 
-                res.json(project);   
+          res.json(project);   
                   
         })
         .catch(err => res.status(404).json({postnotfound: 'no project found'}));
@@ -39,6 +40,7 @@ router.get('/sponsor', passport.authenticate('jwt', {session: false}), sponsorGu
 
 router.get('/sponsor/edit-project/:id', passport.authenticate('jwt', {session:false}), sponsorGuard,(req, res) => {
     Project.findById(req.params.id)
+      .select('-file')
       .then(project => res.json(project))
       .catch(err => res.status(400).json({noprojectfound: 'No project find'}))
   });
@@ -193,6 +195,7 @@ router.delete('/sponsor/:id', passport.authenticate('jwt',{session:false}), spon
 
 router.get('/professor', passport.authenticate('jwt', {session: false}), professorGuard,(req, res) => {
     Project.find()
+        .select('-file')
         .sort({date: -1})
         .then(projects => res.json(projects))
         .catch(err => res.status(400).json({noprojectfound: 'no project found'}))
@@ -205,6 +208,7 @@ router.get('/professor', passport.authenticate('jwt', {session: false}), profess
 router.get('/professor/:id', passport.authenticate('jwt', {session:false}), professorGuard,  (req, res) => {
  
    Project.findById(req.params.id)
+      .select('-file')
       .then(project => res.json(project))
       .catch(err => res.status(400).json({noprojectfound: 'No project find'}))
 });
