@@ -14,7 +14,26 @@ class Navbar extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
-    
+    const adminLinks = (
+      <ul className="navbar-nav ml-auto">
+      </ul>    
+    );
+
+    const adminSignInLinks = (
+      <ul className="navbar-nav ml-auto">
+       
+        <li className="nav-item">
+          <Link
+            to = "/login-admin"
+            onClick={this.onLogoutClick.bind(this)}
+            className="nav-link"
+          > 
+            Logout
+          </Link>
+        </li>
+      </ul>
+    );
+
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
@@ -99,7 +118,16 @@ class Navbar extends Component {
             MatchMe
             </Link>
             :
-
+            (window.location.pathname === '/login-admin' || window.location.pathname === '/adminsignup') ? 
+            <Link className="navbar-brand" to="/login-admin">
+            Admin
+            </Link>
+            :
+            (window.location.pathname === '/admin' || window.location.pathname.match('/admin/*')) ? 
+            <Link className="navbar-brand" to="/admin">
+            Admin
+            </Link>
+            :
             <Link className="navbar-brand" to="/">
             MatchMe
             </Link>
@@ -123,7 +151,9 @@ class Navbar extends Component {
             {
               (isAuthenticated && user.role === 'sponsor') ? sponsorauthLink 
               :(isAuthenticated && user.role === 'professor') ? professorauthLink 
-              :guestLinks
+              :(window.location.pathname === '/login-admin' || window.location.pathname === '/adminsignup') ? adminLinks
+              :(window.location.pathname === '/admin' || window.location.pathname.match('/admin/*')) ? adminSignInLinks
+              : guestLinks
             }
           </div>
         </div>

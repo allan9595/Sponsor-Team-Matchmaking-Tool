@@ -27,9 +27,7 @@ router.get('/sponsor', passport.authenticate('jwt', {session: false}), sponsorGu
     Project.find({user: req.user.id})
         .select('-file')
         .then(project => {
-
-          res.json(project);   
-                  
+          res.json(project);                
         })
         .catch(err => res.status(404).json({postnotfound: 'no project found'}));
 });
