@@ -8,3 +8,4 @@ export const EDIT_PROJECT = 'GET_PROJECT';
 export const SET_TEXT_FILITER = 'SET_TEXT_FILITER';
 export const GET_USERS = 'GET_USERS';
 export const GET_USER = 'GET_USER';
+export const DELETE_USER  = 'DELETE_USER';

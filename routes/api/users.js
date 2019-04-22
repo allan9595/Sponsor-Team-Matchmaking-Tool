@@ -349,4 +349,24 @@ router.post('/reset/:token', async (req, res) => {
 }
   
 });
+
+
+
+//@route DELETE api/users/admin/:id
+//@desc admin can delete the account they don't want 
+//@access Private
+
+router.delete('/admin/:id', (req, res) => {
+  
+  User.findById(req.params.id)
+    .then(user => {
+
+     //Delete
+    user.remove().then(() => res.json({success: true}));
+        
+     
+  })
+  .catch(err => res.status(404).json({usernotfound: 'no user found'}));
+});
+
 module.exports = router;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getAdminUser } from '../actions/authActions';
+import { getAdminUser, deleteUser } from '../actions/authActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import isEmpty from '../validation/is-empty';
@@ -12,6 +12,10 @@ class AccountDetail extends Component {
         };
       }
     
+      onDeleteClick(id) {
+        this.props.deleteUser(id, this.props.history);
+      }
+
     componentDidMount(){
         this.props.getAdminUser(this.props.match.params.id);
     }
@@ -48,6 +52,13 @@ class AccountDetail extends Component {
                                     <p className="card-title">Acoount Email: {this.state.email}</p>
                                     <p className="card-title">Acoount Creating at: {this.state.data}</p>
                                     <p className="card-title">Acoount Role: {this.state.role}</p>
+                                    <button 
+                                    type="button" 
+                                    className="btn btn-danger btn-block"
+                                    onClick={this.onDeleteClick.bind(this, this.props.match.params.id)}
+                                    >
+                                        <i className="far fa-trash-alt" />
+                                    </button>
                                     </div>
                             </div>        
                         </div>
@@ -67,7 +78,8 @@ class AccountDetail extends Component {
         auth: state.auth,
     });
     export default connect(mapStateToProps, {
-        getAdminUser
+        getAdminUser,
+        deleteUser
     })(
         AccountDetail 
     );

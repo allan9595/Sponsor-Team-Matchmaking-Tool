@@ -1,6 +1,6 @@
 import isEmpty from '../validation/is-empty';
 
-import { SET_CURRENT_USER, GET_USERS, GET_USER } from '../actions/types';
+import { SET_CURRENT_USER, GET_USERS, GET_USER, DELETE_USER } from '../actions/types';
 
 const initialState = {
   isAuthenticated: false,
@@ -24,6 +24,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         userDetail: action.payload
+      };
+    case DELETE_USER:
+      return {
+        ...state,
+        userDelete: state.users.filter(user => user._id !== action.payload)
       };
     default:
       return state;

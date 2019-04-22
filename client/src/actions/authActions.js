@@ -2,7 +2,7 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
-import { GET_ERRORS, SET_CURRENT_USER, GET_USERS, GET_USER } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, GET_USERS, GET_USER, DELETE_USER } from './types';
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -150,6 +150,26 @@ export const getAdminUser = (id) => dispatch => {
       dispatch({
         type: GET_USER,
         payload: null
+      })
+    );
+};
+
+
+// Delete User from admin
+export const deleteUser = (id,history) => dispatch => {
+  axios
+    .delete(`/api/users/admin/${id}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_USER,
+        payload: id
+      })
+    )
+    .then(res => history.push('/admin'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };
