@@ -82,13 +82,8 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/professor/projects">
-              Projects
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link className="nav-link" to="/professor/teams">
-              Teams
+              Teams Assignment
           </Link>
         </li>
         <li className="nav-item">

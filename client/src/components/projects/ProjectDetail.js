@@ -83,17 +83,17 @@ class ProjectDetail extends Component {
                     <div className="card-row">
                         <div className="col-md-12">
                                 <div className="card">
-                                    <h3 className="card-header bg-info">{this.state.projectName}</h3>
+                                    <h3 className="card-header bg-info">Project Name: {this.state.projectName}</h3>
                                         <div className="card-body ">     
-                                            <p className="card-title">{this.state.status}</p>
-                                            <p className="card-subtitle">{this.state.email}</p>
-                                            <p className="card-text">{this.state.phone}</p>
-                                            <p className="card-text">{this.state.address}</p>
-                                            <p className="card-text">{this.state.size}</p>  
-                                            <p className="card-text">{this.state.duration}</p>  
-                                            <p className="card-text">{this.state.technologies}</p>  
-                                            <p className="card-text">{this.state.budget}</p>  
-                                            <p className="card-text">{this.state.description}</p> 
+                                            <p className="card-title">Project Status: {this.state.status}</p>
+                                            <p className="card-subtitle">Sponsor Email: {this.state.email}</p>
+                                            <p className="card-text">Sponsor Phone: {this.state.phone}</p>
+                                            <p className="card-text">Address: {this.state.address}</p>
+                                            <p className="card-text">Project Size: {this.state.size}</p>  
+                                            <p className="card-text">Project Length: {this.state.duration}</p>  
+                                            <p className="card-text">Desired Technologies: {this.state.technologies}</p>  
+                                            <p className="card-text">Budget: {this.state.budget}</p>  
+                                            <p className="card-text">Details: {this.state.description}</p> 
                                             
                                             <button onClick={this.onSubmit}>
                                             <i className="fas fa-cloud-download-alt"></i>

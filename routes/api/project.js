@@ -7,6 +7,7 @@ const professorGuard = require('../../middlewares/professorGuard');
 //const upload = require('../../middlewares/fileUpload');
 const multer = require('multer');
 const Project = require('../../models/Project');
+const Project_List = require('../../models/Project_List');
 const User = require('../../models/User');
 
 //Validation
@@ -224,23 +225,5 @@ router.get('/professor/:id/file', async (req, res) => {
 })
 
 
-
-
-
-
-
-/*
-//@route GET api/project/professor/:id
-//@desc GET api/project/professor/:id
-//@access private
-
-router.post(
-  '/professor/team-add', 
-  passport.authenticate('jwt', {session: false}),
-  professorGuard,
-  (req, res) => {});
-
-
-*/
 
 module.exports = router;
