@@ -7,8 +7,8 @@ const professorGuard = require('../../middlewares/professorGuard');
 //const upload = require('../../middlewares/fileUpload');
 const multer = require('multer');
 const Project = require('../../models/Project');
-const Project_List = require('../../models/Project_List');
-const User = require('../../models/User');
+
+
 
 //Validation
 const validateProjectInput = require('../../validation/project');
@@ -223,6 +223,7 @@ router.get('/professor/:id/file', async (req, res) => {
     res.status(404).send();
   }
 })
+
 
 
 

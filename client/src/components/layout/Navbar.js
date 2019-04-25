@@ -72,7 +72,7 @@ class Navbar extends Component {
     const professorauthLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/teams">
+          <Link className="nav-link" to="/teams-view">
               Teams Assignment
           </Link>
         </li>

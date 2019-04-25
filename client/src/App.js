@@ -19,6 +19,7 @@ import DashboardAdmin from './components/dashboard/DashboardAdmin';
 import PrivateRoute from './components/common/PrivateRoute';
 import CreateProject from './components/creat-project/CreateProject';
 import TeamAssignment from './components/team-assignment/Team-Assignment';
+import TeamView from './components/team-assignment/TeamView';
 import EditProject from './components/edit-project/EditProject';
 import ProjectDetail from './components/projects/ProjectDetail';
 import AccountDetail from './accounts/accountDetail';
@@ -75,6 +76,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path = "/teams" component={ TeamAssignment } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path = "/teams-view" component={ TeamView } />
               </Switch>
               <Switch>
                 <PrivateRoute exact path = "/edit-project/:id" component={ EditProject } />

@@ -39,5 +39,11 @@ router.post('/professor/teams/create',passport.authenticate('jwt', {session:fals
    
 });
 
+router.get('/professor/teams', passport.authenticate('jwt', {session: false}), professorGuard,(req, res) => {
+  Team.find()
+      .sort({date: -1})
+      .then(teams => res.json(teams))
+      .catch(err => res.status(400).json({noteamsfound: 'no team found'}))
+});
 
 module.exports = router;

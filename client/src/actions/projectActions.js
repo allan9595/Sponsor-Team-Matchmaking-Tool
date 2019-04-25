@@ -6,7 +6,8 @@ import {
   DELETE_PROJECT,
   GET_PROJECT,
   EDIT_PROJECT,
-  ADD_TEAMS
+  ADD_TEAMS,
+  GET_TEAMS
 } from './types';
 
 
@@ -185,11 +186,31 @@ export const teamAssignment = (teamData, history) => dispatch => {
         payload: res.data
       })
     })
-    .then(res => history.push('/professor'))
+    .then(res => history.push('/teams-view'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
+      })
+    );
+};
+
+
+//GET all the teams for professor
+export const getTeams = () => dispatch => {
+  
+  axios
+    .get('/api/team/professor/teams')
+    .then(res =>
+      dispatch({
+        type: GET_TEAMS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_TEAMS,
+        payload: null
       })
     );
 };
