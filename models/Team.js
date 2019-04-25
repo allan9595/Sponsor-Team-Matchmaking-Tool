@@ -7,11 +7,15 @@ const Schema = mongoose.Schema;
 
 
 const TeamSchema = new Schema({
+    user: {
+        type : Schema.Types.ObjectId,
+        ref: "users"
+      },
     projectName: {
         type: String,
         required: true
     },
-    Team: {
+    team: {
         type: String,
         required: true
     },

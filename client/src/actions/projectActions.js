@@ -5,7 +5,8 @@ import {
   ADD_PROJECTS,
   DELETE_PROJECT,
   GET_PROJECT,
-  EDIT_PROJECT
+  EDIT_PROJECT,
+  ADD_TEAMS
 } from './types';
 
 
@@ -168,6 +169,27 @@ export const fileDownload = (id) => dispatch => {
       dispatch({
         type: GET_PROJECT,
         payload: null
+      })
+    );
+};
+
+
+
+// Team Assignment
+export const teamAssignment = (teamData, history) => dispatch => {
+  axios
+    .post('/api/team/professor/teams/create', teamData)
+    .then(res => {
+      dispatch({
+        type: ADD_TEAMS,
+        payload: res.data
+      })
+    })
+    .then(res => history.push('/professor'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };

@@ -52,11 +52,6 @@ class Navbar extends Component {
     const sponsorauthLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/sponsor/account">
-              Account
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link className="nav-link" to="/upload">
               Project Upload
           </Link>
@@ -77,12 +72,7 @@ class Navbar extends Component {
     const professorauthLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/professor/account">
-              Account
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/professor/teams">
+          <Link className="nav-link" to="/teams">
               Teams Assignment
           </Link>
         </li>

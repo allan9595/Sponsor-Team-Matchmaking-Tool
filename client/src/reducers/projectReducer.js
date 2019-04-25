@@ -2,12 +2,14 @@ import {
   GET_PROJECTS,
   ADD_PROJECTS,
   DELETE_PROJECT,
-  GET_PROJECT
+  GET_PROJECT,
+  ADD_TEAMS
 } from '../actions/types';
 
 
 const initialState = {
-  projects: []
+  projects: [],
+  teams: []
 }
 
 
@@ -28,6 +30,11 @@ export default (state = initialState, action) => {
           ...state,
           projects: [action.payload , ...state.projects]
         };
+      case ADD_TEAMS: 
+        return {
+          ...state,
+          teams: action.payload
+        }
       case DELETE_PROJECT:
         return {
           ...state,

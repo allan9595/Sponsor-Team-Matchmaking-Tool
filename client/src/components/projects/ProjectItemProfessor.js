@@ -12,14 +12,14 @@ class ProjectItemProfessor extends Component {
         return (
             <div className="col-md-12">
                 <div className="card text-white bg-dark">
-                    <h3 className="card-header bg-secondary"><p className="text-info">Project Name:</p>{project.projectName}</h3><p></p>
+                    <h3 className="card-header bg-secondary"><p className="text-info">Project Name:<br></br></p>{project.projectName}</h3><p></p>
                     
                     <div className="card-body ">
                         
-                        <p className="card-subtitle"><p className="text-info">Project Status:</p>{project.status}</p><p></p>
-                        <p className="card-subtitle"><p className="text-info">Sponsor Email:</p>{project.email}</p><p></p>
+                        <p className="card-subtitle"><span className="text-info">Project Status:</span><br></br>{project.status}</p>
+                        <p className="card-subtitle"><span className="text-info">Sponsor Email:</span><br></br>{project.email}</p>
                         
-                        <p className="card-text"><p className="text-info">Proejct Description:</p>{project.description}</p><p></p> 
+                        <p className="card-text"><span className="text-info">Proejct Description:</span><br></br>{project.description}</p> 
                         
                         <Link 
                             className="btn btn-info btn-block"

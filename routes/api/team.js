@@ -18,5 +18,26 @@ const Team = require('../../models/Team');
 router.get('/test', (req, res) => res.json({msg: "posts works"}));
 
 
+//@route POST api/project/sponsor/create
+//@desc Create Project
+//@access Private
+
+router.post('/professor/teams/create',passport.authenticate('jwt', {session:false}) ,professorGuard, (req, res) => {
+    
+
+    const teamFields = new Team({
+        team: req.body.team,
+        projectName: req.body.projectName,
+        user: req.user.id
+    });
+    
+      teamFields
+        .save()
+        .then(team => res.json(team))
+        //.catch(err => res.status(400).json({'team':'failed'}));
+   
+   
+});
+
 
 module.exports = router;
