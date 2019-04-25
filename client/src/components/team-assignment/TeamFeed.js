@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TeamItem from './TeamItem';
-import { connect } from 'react-redux';
+
 
 class TeamFeed extends Component {
   render() {

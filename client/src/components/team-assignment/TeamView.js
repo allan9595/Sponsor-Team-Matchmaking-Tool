@@ -12,7 +12,7 @@ import "../dashboardCSS/dashboard.css";
     }
 
   render() {
-    const {user} = this.props.auth;
+    
     const { teams } = this.props.project;
     let dashboardContent, projectContent;
 
