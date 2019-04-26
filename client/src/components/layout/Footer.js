@@ -1,5 +1,5 @@
 import React from 'react';
-import "../layout/footer.css"
+import "../layoutCSS/footer.css"
 
 export default () => {
   return (

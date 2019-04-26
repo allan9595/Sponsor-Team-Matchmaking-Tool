@@ -5,6 +5,7 @@ import { getTeams  } from '../../actions/projectActions';
 import TeamFeed from './TeamFeed';
 import { Link } from 'react-router-dom';
 import "../dashboardCSS/dashboard.css";
+import "../team-assignmentCSS/assignmentList.css";
 
   class TeamView extends Component {
     componentDidMount() {
@@ -25,7 +26,7 @@ import "../dashboardCSS/dashboard.css";
 
     dashboardContent = (
         <div>
-          <div className="container">
+          <div className="container2">
             
               {projectContent}
             
@@ -35,11 +36,11 @@ import "../dashboardCSS/dashboard.css";
 
     return (
         
-        <div class="container">
+        <div class="container2">
 	
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class= "card2">
                     <div class="card-header">
                             <h4>Team Assignment List</h4>
                         </div>

@@ -6,6 +6,7 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProject } from '../../actions/projectActions';
+import "../dashboardCSS/dashboard.css";
 
 class CreateProject extends Component {
   constructor(props) {

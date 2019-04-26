@@ -1,4 +1,6 @@
 .navBar{
     color: #183563;
     background-color: #183563;
+    box-shadow: 1px 2px;
+    text-shadow: 2px 2px 4px #000000;
 }
