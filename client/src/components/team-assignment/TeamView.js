@@ -36,15 +36,14 @@ import "../team-assignmentCSS/assignmentList.css";
 
     return (
         
-        <div class="container2">
-	
-            <div class="row">
-                <div class="col-md-12">
-                    <div class= "card2">
-                    <div class="card-header">
+        <div className="container2">
+            <div className="row">
+                <div className="col-md-12">
+                    <div className= "card2">
+                    <div className="card-header">
                             <h4>Team Assignment List</h4>
                         </div>
-                        <div class="gaadiex-list">
+                        <div className="gaadiex-list">
                           {dashboardContent}
                         </div>
                         <Link 

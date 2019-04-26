@@ -12,8 +12,8 @@ class TeamItem extends Component {
         return (
             <div className="col-md-12">
                 <div className="card">
-                    <div class="gaadiex-list">
-                        <div class="gaadiex-list-item">
+                    <div className="gaadiex-list">
+                        <div className="gaadiex-list-item">
                             <h3 className="text-info">Team Name: {team.team}</h3>
                             <h4>Project Name: {team.projectName}</h4>
                         </div>

@@ -23,6 +23,7 @@ import TeamView from './components/team-assignment/TeamView';
 import EditProject from './components/edit-project/EditProject';
 import ProjectDetail from './components/projects/ProjectDetail';
 import AccountDetail from './accounts/accountDetail';
+
 import './App.css';
 
 
@@ -89,7 +90,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path = "/admin/:id" component={ AccountDetail } />
               </Switch>
-              
+             
             </div>
           </div>
         </BrowserRouter>
