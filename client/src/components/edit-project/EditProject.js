@@ -235,6 +235,7 @@ class CreateProject extends Component {
                     <input type="file" name = "file" id="file" onChange={this.onChangeFile}   className="input-default-js" />
                     <label className="label-for-default-js rounded-right mb-3" htmlFor="file">
                     </label>
+                    <div className="alert-danger">You have to choose a file to upload, file size has to be less than 10mb and in PDF, DOC or DOCX</div>
                  </div >
                 <input
                   type="submit"

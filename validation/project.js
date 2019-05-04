@@ -54,18 +54,18 @@ module.exports = function validateProjectInput(data) {
   if(Validator.isEmpty(data.address)){
     errors.address = 'Address field is required';
   }
-
+/*
   if(Validator.isEmpty(data.duration)){
     errors.duration = 'Duartion field is requried';
-  }
+  }*/
   if(Validator.isEmpty(data.size)){
     errors.size = 'Size field is requried';
   }
-
+  /*
   if(Validator.isEmpty(data.budget)){
     errors.budget = 'Budget field is required, if no budget, type in none';
   }
-
+*/  
   if(Validator.isEmpty(data.description)){
     errors.description = 'Description field is required';
   }

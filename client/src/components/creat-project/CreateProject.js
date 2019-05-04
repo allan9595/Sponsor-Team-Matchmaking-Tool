@@ -70,7 +70,7 @@ class CreateProject extends Component {
 
     // Select options for duration
     const optionsDuration = [
-      { label: '* Select how long you estimate this project would take', value: 0 },
+      { label: ' Select how long you estimate this project would take', value: 0 },
       { label: '3 months', value: '3 months' },
       { label: '6 months', value: '6 months' }
     ];
@@ -135,7 +135,7 @@ class CreateProject extends Component {
                   error={errors.address}
                 />
                 <TextFieldGroup
-                  placeholder="* budget"
+                  placeholder=" budget"
                   name="budget"
                   value={this.state.budget}
                   onChange={this.onChange}
@@ -183,12 +183,14 @@ class CreateProject extends Component {
                     <input type="file" name ="file" id="file" onChange={this.onChangeFile}   className="input-default-js" />
                     <label className="label-for-default-js rounded-right mb-3" htmlFor="file">
                     </label>
+                    <div className="alert-danger">You have to choose a file to upload, file size has to be less than 10mb and in PDF, DOC or DOCX</div>
                  </div >
                 <input
                   type="submit"
                   value="Submit"
                   className="btn btn-info btn-block mt-4"
                 />
+                
               </form>
             </div>
             </div>

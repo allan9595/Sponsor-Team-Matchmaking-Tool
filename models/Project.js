@@ -28,12 +28,10 @@ const ProjectSchema = new Schema({
     required: true
   },
   duration: {
-    type: String,
-    required: true
+    type: String
   },
   budget: {
-    type: String,
-    required:true
+    type: String
   },
   size: {
     type: String,

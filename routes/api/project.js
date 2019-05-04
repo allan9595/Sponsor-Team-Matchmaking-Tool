@@ -47,11 +47,11 @@ router.get('/sponsor/edit-project/:id', passport.authenticate('jwt', {session:fa
 
   const upload = multer({
     limits: {
-        fileSize: 10000000
+        fileSize: 10000000 //set file size to 10 mb
     },
     fileFilter(req, file, cb) {
         if (!file.originalname.match(/\.(doc|docx|pdf)$/)) {
-            return cb(new Error('Please upload an doc or docx or pdf file'))
+            return cb(new Error('Please upload an doc or docx or pdf file')) //validate the file type to pdf, dox, docx
         }
 
         cb(undefined, true)
