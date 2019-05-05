@@ -10,6 +10,8 @@ Here's a walkthrough of implemented user stories (final sprint admin and team ad
 
 <img src='https://github.com/allan9595/Sponsor-Team-Matchmaking-Tool/blob/master/walkthrough-sponsor-app-sprint3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+please eamil to bohanzhang@my.unt.edu for admin account user and password
+
 Here's a walkthrough of implemented user stories:
 
 <img src='https://github.com/allan9595/Sponsor-Team-Matchmaking-Tool/blob/master/walkthrough-sponsor-app.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
