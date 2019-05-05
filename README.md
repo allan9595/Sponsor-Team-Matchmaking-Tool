@@ -6,6 +6,10 @@ Project URL: https://matchmeunt.herokuapp.com
 
 ## Video Walkthrough
 
+Here's a walkthrough of implemented user stories (final sprint admin and team adding demo):
+
+<img src='https://github.com/allan9595/Sponsor-Team-Matchmaking-Tool/blob/master/walkthrough-sponsor-app-sprint3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 Here's a walkthrough of implemented user stories:
 
 <img src='https://github.com/allan9595/Sponsor-Team-Matchmaking-Tool/blob/master/walkthrough-sponsor-app.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
