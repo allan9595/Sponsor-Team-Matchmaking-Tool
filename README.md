@@ -23,7 +23,7 @@ redirectDomain: 'http://localhost:3000' ***This is for get account back through 
 the file should look like the following: 
 
 module.exports = {
-    
+
   mongoURI : 'YOUR_KEY',
 
   secretOrKey: 'YOUR_KEY',
@@ -34,7 +34,7 @@ module.exports = {
 
 };
 
-Open a terminal under the folder and type in "npm install" 
+Open a terminal under both the root folder and client folder then type in "npm install" 
 
 Open your browser and go to localhost:3000
 
