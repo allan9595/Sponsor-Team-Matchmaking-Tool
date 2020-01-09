@@ -13,17 +13,25 @@ Create a config file named "keys_dev.js" under /config
 You will need the following variable in order for the app work locally
 
 mongoURI : 'YOUR mongoDB cloud secret',
+
 secretOrKey: 'YOUR JWT PRIVATE KEY',
+
 sendGridKey: 'YOUR SENDGRID private key', ***SendGrid is an email service provide*** 
+
 redirectDomain: 'http://localhost:3000' ***This is for get account back through password reset link from email***
 
 the file should look like the following: 
 
 module.exports = {
+    
   mongoURI : 'YOUR_KEY',
+
   secretOrKey: 'YOUR_KEY',
+
   sendGridKey: 'YOUR_KEY',
+
   redirectDomain: 'http://localhost:3000'
+
 };
 
 Open a terminal under the folder and type in "npm install" 
