@@ -2,6 +2,11 @@
 
 **Sponsor-Team-Matchmaking-Tool** is a tool allow sponsors and university professors connect better!
 
+Sponsor-Team-Matchmaking-Tool is a tool allow sponsors and university professors connect better!
+The app has role based access control that allows professor to match teams with sponsor's projects. The admin can 
+view all the accounts and delete accounts if needed. This project was my capstone project and finished in a 
+group based environment.
+
 Project URL: https://matchmeunt.herokuapp.com
 
 ## How to setup on local machine
