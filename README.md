@@ -4,13 +4,46 @@
 
 Project URL: https://matchmeunt.herokuapp.com
 
+## How to setup on local machine
+
+git clone https://github.com/allan9595/Sponsor-Team-Matchmaking-Tool.git
+
+Create a config file named "keys_dev.js" under /config
+
+You will need the following variable in order for the app work locally
+
+mongoURI : 'YOUR mongoDB cloud secret',
+secretOrKey: 'YOUR JWT PRIVATE KEY',
+sendGridKey: 'YOUR SENDGRID private key', ***SendGrid is an email service provide*** 
+redirectDomain: 'http://localhost:3000' ***This is for get account back through password reset link from email***
+
+the file should look like the following: 
+
+module.exports = {
+  mongoURI : 'YOUR_KEY',
+  secretOrKey: 'YOUR_KEY',
+  sendGridKey: 'YOUR_KEY',
+  redirectDomain: 'http://localhost:3000'
+};
+
+Open a terminal under the folder and type in "npm install" 
+
+Open your browser and go to localhost:3000
+
+The path for admin: 
+
+[http://localhost:3000/login-admin](http://localhost:3000/login-admin)
+
+[http://localhost:3000/adminsignup](http://localhost:3000/adminsignup)
+
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories (final sprint admin and team adding demo):
 
 <img src='https://github.com/allan9595/Sponsor-Team-Matchmaking-Tool/blob/master/walkthrough-sponsor-app-sprint3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-please eamil to bohanzhang@my.unt.edu for admin account user and password
+please eamil to bohan9595@gmail.com for admin account user and password
 
 Here's a walkthrough of implemented user stories:
 
